@@ -1,0 +1,71 @@
+PREREQUISITES
+=============
+
+To install Wire, you need the following prerequisites:
+
+    1. OpenSSL Library
+       http://www.openssl.org/source/
+
+    2. GNU libiconv
+       http://www.gnu.org/software/libiconv/
+
+    3. GNU readline
+       http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html
+
+These are usually distributed with operating systems.
+
+
+INSTALLATION
+============
+
+To install Wire, follow these instructions:
+
+    1. Unpack the tarball:
+
+         tar -xzf wire-X.X.tar.gz
+         cd wire-X.X.tar.gz
+
+    2. Run the configuration script:
+
+         ./configure
+
+       This will install Wire into /usr/local/bin by default. To
+       change this, instead run:
+
+         ./configure --prefix=PATH
+
+    3. Run make. Note, GNU make is required.
+
+         gmake
+
+    4. If make is successful, install the software:
+
+         gmake install
+
+       This will require write permissions to /usr/local/bin, or
+       whatever directory you set as the prefix above.
+
+
+RUNNING
+=======
+
+To start Wire, simply run:
+
+    wire
+    
+    
+    
+    
+NOTE ABOUT MAC OS X 10.7
+===========================
+
+The current version of GNU Readline (6.4) fails to compile on MAC OS X 10.7. 
+To compile it succesfuly, you can apply the following steps:
+
+export MACOSX_DEPLOYMENT_TARGET=10.7
+export CFLAGS="-arch x86_64 -g -Os -pipe -no-cpp-precomp"
+export CCFLAGS="-arch x86_64 -g -Os -pipe"
+export CXXFLAGS="-arch x86_64 -g -Os -pipe"
+export LDFLAGS="-arch x86_64 -bind_at_load"
+
+LIBS="-liconv" LDFLAGS="-L/usr/local/Cellar/libiconv/1.14/lib" CPPFLAGS="-I/usr/local/Cellar/libiconv/1.14/include" ./configure --enable-pthreads
