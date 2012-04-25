@@ -30,8 +30,8 @@ Kernel configured for up to 4 processors.
 Processor type: i486 (Intel 80486)
 Processors active: 0 1 2 3
 Primary memory available: 8.00 gigabytes
-Default processor set: 148 tasks, 702 threads, 4 processors
-Load average: 1.30, Mach factor: 2.69
+Default processor set: 147 tasks, 710 threads, 4 processors
+Load average: 1.52, Mach factor: 2.68
 /bin/machine           = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
@@ -79,7 +79,6 @@ llvm-gcc-4.2: argument to `-V' is missing
 configure:2318: $? = 1
 configure:2341: checking for C compiler default output file name
 configure:2368: gcc  -I/usr/local/Cellar/libiconv/1.14/include -L/usr/local/Cellar/libiconv/1.14/lib conftest.c -liconv >&5
-ld: warning: directory not found for option '-L/usr/local/Cellar/libiconv/1.14/lib'
 configure:2371: $? = 0
 configure:2409: result: a.out
 configure:2426: checking whether the C compiler works
@@ -90,7 +89,6 @@ configure:2463: checking whether we are cross compiling
 configure:2465: result: no
 configure:2468: checking for suffix of executables
 configure:2475: gcc -o conftest  -I/usr/local/Cellar/libiconv/1.14/include -L/usr/local/Cellar/libiconv/1.14/lib conftest.c -liconv >&5
-ld: warning: directory not found for option '-L/usr/local/Cellar/libiconv/1.14/lib'
 configure:2478: $? = 0
 configure:2502: result: 
 configure:2508: checking for suffix of object files
@@ -128,7 +126,7 @@ configure: failed program was:
 | #define PACKAGE_VERSION "2.0"
 | #define PACKAGE_STRING "wire 2.0"
 | #define PACKAGE_BUGREPORT "dev@read-write.fr"
-| #define WI_REVISION 605b1be
+| #define WI_REVISION "86d79f6"
 | #define WR_VERSION "2.0"
 | #define WR_PROTOCOL_VERSION "1.1"
 | #define WR_BUGREPORT "dev@read-write.fr"
@@ -147,7 +145,7 @@ configure: failed program was:
 | #define PACKAGE_VERSION "2.0"
 | #define PACKAGE_STRING "wire 2.0"
 | #define PACKAGE_BUGREPORT "dev@read-write.fr"
-| #define WI_REVISION 605b1be
+| #define WI_REVISION "86d79f6"
 | #define WR_VERSION "2.0"
 | #define WR_PROTOCOL_VERSION "1.1"
 | #define WR_BUGREPORT "dev@read-write.fr"
@@ -161,7 +159,6 @@ configure:4133: checking for ANSI C header files
 configure:4163: gcc -c -g -O2 -I/usr/local/Cellar/libiconv/1.14/include -I/usr/local/include conftest.c >&5
 configure:4169: $? = 0
 configure:4268: gcc -o conftest -g -O2 -I/usr/local/Cellar/libiconv/1.14/include -I/usr/local/include -L/usr/local/Cellar/libiconv/1.14/lib -L/usr/local/lib conftest.c -liconv >&5
-ld: warning: directory not found for option '-L/usr/local/Cellar/libiconv/1.14/lib'
 configure:4271: $? = 0
 configure:4277: ./conftest
 configure:4280: $? = 0
@@ -214,7 +211,6 @@ configure:4512: checking for pthread.h
 configure:4520: result: yes
 configure:4529: checking for pthreads
 configure:4646: gcc -o conftest -g -O2 -I/usr/local/Cellar/libiconv/1.14/include -I/usr/local/include -L/usr/local/Cellar/libiconv/1.14/lib -L/usr/local/lib conftest.c -liconv >&5
-ld: warning: directory not found for option '-L/usr/local/Cellar/libiconv/1.14/lib'
 configure:4649: $? = 0
 configure:4655: ./conftest
 configure:4658: $? = 0
@@ -222,22 +218,18 @@ configure:4996: result: yes
 configure:5046: checking for pow
 configure:5102: gcc -o conftest -g -O2 -I/usr/local/Cellar/libiconv/1.14/include -I/usr/local/include -DWI_PTHREADS -L/usr/local/Cellar/libiconv/1.14/lib -L/usr/local/lib conftest.c -liconv >&5
 conftest.c:46: warning: conflicting types for built-in function 'pow'
-ld: warning: directory not found for option '-L/usr/local/Cellar/libiconv/1.14/lib'
 configure:5108: $? = 0
 configure:5125: result: yes
 configure:5217: checking for setsockopt
 configure:5273: gcc -o conftest -g -O2 -I/usr/local/Cellar/libiconv/1.14/include -I/usr/local/include -DWI_PTHREADS -L/usr/local/Cellar/libiconv/1.14/lib -L/usr/local/lib conftest.c -liconv >&5
-ld: warning: directory not found for option '-L/usr/local/Cellar/libiconv/1.14/lib'
 configure:5279: $? = 0
 configure:5296: result: yes
 configure:5388: checking for gethostent
 configure:5444: gcc -o conftest -g -O2 -I/usr/local/Cellar/libiconv/1.14/include -I/usr/local/include -DWI_PTHREADS -L/usr/local/Cellar/libiconv/1.14/lib -L/usr/local/lib conftest.c -liconv >&5
-ld: warning: directory not found for option '-L/usr/local/Cellar/libiconv/1.14/lib'
 configure:5450: $? = 0
 configure:5467: result: yes
 configure:5559: checking for herror
 configure:5615: gcc -o conftest -g -O2 -I/usr/local/Cellar/libiconv/1.14/include -I/usr/local/include -DWI_PTHREADS -L/usr/local/Cellar/libiconv/1.14/lib -L/usr/local/lib conftest.c -liconv >&5
-ld: warning: directory not found for option '-L/usr/local/Cellar/libiconv/1.14/lib'
 configure:5621: $? = 0
 configure:5638: result: yes
 configure:5745: checking CoreServices/CoreServices.h usability
@@ -296,7 +288,6 @@ configure:6964: checking for openssl/sha.h
 configure:6972: result: yes
 configure:7004: checking for SHA1_Init in -lcrypto
 configure:7039: gcc -o conftest -g -O2 -I/usr/local/Cellar/libiconv/1.14/include -I/usr/local/include -DWI_PTHREADS -DWI_CORESERVICES -DWI_CARBON -DWI_DIGESTS -DWI_CIPHERS -L/usr/local/Cellar/libiconv/1.14/lib -L/usr/local/lib conftest.c -lcrypto  -liconv -framework CoreServices -framework Carbon >&5
-ld: warning: directory not found for option '-L/usr/local/Cellar/libiconv/1.14/lib'
 configure:7045: $? = 0
 configure:7063: result: yes
 configure:7195: checking libxml/parser.h usability
@@ -311,7 +302,6 @@ configure:7304: checking for libxml/parser.h
 configure:7312: result: yes
 configure:7342: checking for xmlParseFile in -lxml2
 configure:7377: gcc -o conftest -g -O2 -I/usr/local/Cellar/libiconv/1.14/include -I/usr/local/include -DWI_PTHREADS -DWI_CORESERVICES -DWI_CARBON -DWI_DIGESTS -DWI_CIPHERS -DWI_RSA -I/usr/include/libxml2 -L/usr/local/Cellar/libiconv/1.14/lib -L/usr/local/lib conftest.c -lxml2  -liconv -framework CoreServices -framework Carbon -lcrypto >&5
-ld: warning: directory not found for option '-L/usr/local/Cellar/libiconv/1.14/lib'
 configure:7383: $? = 0
 configure:7401: result: yes
 configure:7479: checking zlib.h usability
@@ -326,7 +316,6 @@ configure:7588: checking for zlib.h
 configure:7596: result: yes
 configure:7626: checking for deflate in -lz
 configure:7661: gcc -o conftest -g -O2 -I/usr/local/Cellar/libiconv/1.14/include -I/usr/local/include -DWI_PTHREADS -DWI_CORESERVICES -DWI_CARBON -DWI_DIGESTS -DWI_CIPHERS -DWI_RSA -I/usr/include/libxml2 -DWI_LIBXML2 -DWI_PLIST -L/usr/local/Cellar/libiconv/1.14/lib -L/usr/local/lib conftest.c -lz  -liconv -framework CoreServices -framework Carbon -lcrypto -lxml2 >&5
-ld: warning: directory not found for option '-L/usr/local/Cellar/libiconv/1.14/lib'
 configure:7667: $? = 0
 configure:7685: result: yes
 configure:7765: checking iconv.h usability
@@ -341,12 +330,67 @@ configure:7874: checking for iconv.h
 configure:7882: result: yes
 configure:7912: checking for iconv in -liconv
 configure:7947: gcc -o conftest -g -O2 -I/usr/local/Cellar/libiconv/1.14/include -I/usr/local/include -DWI_PTHREADS -DWI_CORESERVICES -DWI_CARBON -DWI_DIGESTS -DWI_CIPHERS -DWI_RSA -I/usr/include/libxml2 -DWI_LIBXML2 -DWI_PLIST -DWI_ZLIB -DWI_P7 -L/usr/local/Cellar/libiconv/1.14/lib -L/usr/local/lib conftest.c -liconv  -liconv -framework CoreServices -framework Carbon -lcrypto -lxml2 -lz >&5
-ld: warning: directory not found for option '-L/usr/local/Cellar/libiconv/1.14/lib'
-configure:7953: $? = 0
-configure:7971: result: yes
+Undefined symbols for architecture x86_64:
+  "_iconv", referenced from:
+      _main in cciz7W9L.o
+ld: symbol(s) not found for architecture x86_64
+collect2: ld returned 1 exit status
+configure:7953: $? = 1
+configure: failed program was:
+| /* confdefs.h.  */
+| #define PACKAGE_NAME "wire"
+| #define PACKAGE_TARNAME "wire"
+| #define PACKAGE_VERSION "2.0"
+| #define PACKAGE_STRING "wire 2.0"
+| #define PACKAGE_BUGREPORT "dev@read-write.fr"
+| #define WI_REVISION "86d79f6"
+| #define WR_VERSION "2.0"
+| #define WR_PROTOCOL_VERSION "1.1"
+| #define WR_BUGREPORT "dev@read-write.fr"
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_PTHREAD_H 1
+| #define HAVE_CORESERVICES_CORESERVICES_H 1
+| #define HAVE_CARBON_CARBON_H 1
+| #define HAVE_COMMONCRYPTO_COMMONDIGEST_H 1
+| #define HAVE_COMMONCRYPTO_COMMONCRYPTOR_H 1
+| #define HAVE_COMMONCRYPTO_COMMONDIGEST_H 1
+| #define HAVE_COMMONCRYPTO_COMMONCRYPTOR_H 1
+| #define HAVE_OPENSSL_SHA_H 1
+| #define HAVE_LIBXML_PARSER_H 1
+| #define HAVE_ZLIB_H 1
+| #define HAVE_ICONV_H 1
+| /* end confdefs.h.  */
+| 
+| /* Override any GCC internal prototype to avoid an error.
+|    Use char because int might match the return type of a GCC
+|    builtin and then its argument prototype would still apply.  */
+| #ifdef __cplusplus
+| extern "C"
+| #endif
+| char iconv ();
+| int
+| main ()
+| {
+| return iconv ();
+|   ;
+|   return 0;
+| }
+configure:7971: result: no
+configure:7989: checking for libiconv in -liconv
+configure:8024: gcc -o conftest -g -O2 -I/usr/local/Cellar/libiconv/1.14/include -I/usr/local/include -DWI_PTHREADS -DWI_CORESERVICES -DWI_CARBON -DWI_DIGESTS -DWI_CIPHERS -DWI_RSA -I/usr/include/libxml2 -DWI_LIBXML2 -DWI_PLIST -DWI_ZLIB -DWI_P7 -L/usr/local/Cellar/libiconv/1.14/lib -L/usr/local/lib conftest.c -liconv  -liconv -framework CoreServices -framework Carbon -lcrypto -lxml2 -lz >&5
+configure:8030: $? = 0
+configure:8048: result: yes
 configure:8174: checking if iconv understands Unicode
 configure:8200: gcc -o conftest -g -O2 -I/usr/local/Cellar/libiconv/1.14/include -I/usr/local/include -DWI_PTHREADS -DWI_CORESERVICES -DWI_CARBON -DWI_DIGESTS -DWI_CIPHERS -DWI_RSA -I/usr/include/libxml2 -DWI_LIBXML2 -DWI_PLIST -DWI_ZLIB -DWI_P7 -L/usr/local/Cellar/libiconv/1.14/lib -L/usr/local/lib conftest.c -liconv -framework CoreServices -framework Carbon -lcrypto -lxml2 -lz >&5
-ld: warning: directory not found for option '-L/usr/local/Cellar/libiconv/1.14/lib'
 configure:8203: $? = 0
 configure:8209: ./conftest
 configure:8212: $? = 0
@@ -363,10 +407,9 @@ configure:8384: checking for curses.h
 configure:8392: result: yes
 configure:8401: checking for tgoto
 configure:8457: gcc -o conftest -g -O2 -I/usr/local/Cellar/libiconv/1.14/include -I/usr/local/include -DWI_PTHREADS -DWI_CORESERVICES -DWI_CARBON -DWI_DIGESTS -DWI_CIPHERS -DWI_RSA -I/usr/include/libxml2 -DWI_LIBXML2 -DWI_PLIST -DWI_ZLIB -DWI_P7 -DWI_ICONV -L/usr/local/Cellar/libiconv/1.14/lib -L/usr/local/lib conftest.c -liconv -framework CoreServices -framework Carbon -lcrypto -lxml2 -lz >&5
-ld: warning: directory not found for option '-L/usr/local/Cellar/libiconv/1.14/lib'
 Undefined symbols for architecture x86_64:
   "_tgoto", referenced from:
-      _main in ccfoLYNP.o
+      _main in ccvv8Be3.o
 ld: symbol(s) not found for architecture x86_64
 collect2: ld returned 1 exit status
 configure:8463: $? = 1
@@ -377,7 +420,7 @@ configure: failed program was:
 | #define PACKAGE_VERSION "2.0"
 | #define PACKAGE_STRING "wire 2.0"
 | #define PACKAGE_BUGREPORT "dev@read-write.fr"
-| #define WI_REVISION 605b1be
+| #define WI_REVISION "86d79f6"
 | #define WR_VERSION "2.0"
 | #define WR_PROTOCOL_VERSION "1.1"
 | #define WR_BUGREPORT "dev@read-write.fr"
@@ -445,7 +488,6 @@ configure: failed program was:
 configure:8480: result: no
 configure:8486: checking for tgoto in -ltermcap
 configure:8521: gcc -o conftest -g -O2 -I/usr/local/Cellar/libiconv/1.14/include -I/usr/local/include -DWI_PTHREADS -DWI_CORESERVICES -DWI_CARBON -DWI_DIGESTS -DWI_CIPHERS -DWI_RSA -I/usr/include/libxml2 -DWI_LIBXML2 -DWI_PLIST -DWI_ZLIB -DWI_P7 -DWI_ICONV -L/usr/local/Cellar/libiconv/1.14/lib -L/usr/local/lib conftest.c -ltermcap  -liconv -framework CoreServices -framework Carbon -lcrypto -lxml2 -lz >&5
-ld: warning: directory not found for option '-L/usr/local/Cellar/libiconv/1.14/lib'
 configure:8527: $? = 0
 configure:8545: result: yes
 configure:8275: checking term.h usability
@@ -502,19 +544,16 @@ configure:8873: checking for readline/readline.h
 configure:8881: result: yes
 configure:8911: checking for rl_initialize in -lreadline
 configure:8946: gcc -o conftest -g -O2 -I/usr/local/Cellar/libiconv/1.14/include -I/usr/local/include -DWI_PTHREADS -DWI_CORESERVICES -DWI_CARBON -DWI_DIGESTS -DWI_CIPHERS -DWI_RSA -I/usr/include/libxml2 -DWI_LIBXML2 -DWI_PLIST -DWI_ZLIB -DWI_P7 -DWI_ICONV -DWI_TERMCAP -L/usr/local/Cellar/libiconv/1.14/lib -L/usr/local/lib conftest.c -lreadline  -liconv -framework CoreServices -framework Carbon -lcrypto -lxml2 -lz -ltermcap >&5
-ld: warning: directory not found for option '-L/usr/local/Cellar/libiconv/1.14/lib'
 configure:8952: $? = 0
 configure:8970: result: yes
 configure:8986: checking for GNU readline
 configure:9010: gcc -o conftest -g -O2 -I/usr/local/Cellar/libiconv/1.14/include -I/usr/local/include -DWI_PTHREADS -DWI_CORESERVICES -DWI_CARBON -DWI_DIGESTS -DWI_CIPHERS -DWI_RSA -I/usr/include/libxml2 -DWI_LIBXML2 -DWI_PLIST -DWI_ZLIB -DWI_P7 -DWI_ICONV -DWI_TERMCAP -L/usr/local/Cellar/libiconv/1.14/lib -L/usr/local/lib conftest.c -liconv -framework CoreServices -framework Carbon -lcrypto -lxml2 -lz -ltermcap -lreadline >&5
-ld: warning: directory not found for option '-L/usr/local/Cellar/libiconv/1.14/lib'
 configure:9013: $? = 0
 configure:9019: ./conftest
 configure:9022: $? = 0
 configure:9025: result: yes
 configure:9057: checking for rl_completion_matches
 configure:9087: gcc -o conftest -g -O2 -I/usr/local/Cellar/libiconv/1.14/include -I/usr/local/include -DWI_PTHREADS -DWI_CORESERVICES -DWI_CARBON -DWI_DIGESTS -DWI_CIPHERS -DWI_RSA -I/usr/include/libxml2 -DWI_LIBXML2 -DWI_PLIST -DWI_ZLIB -DWI_P7 -DWI_ICONV -DWI_TERMCAP -L/usr/local/Cellar/libiconv/1.14/lib -L/usr/local/lib conftest.c -liconv -framework CoreServices -framework Carbon -lcrypto -lxml2 -lz -ltermcap -lreadline >&5
-ld: warning: directory not found for option '-L/usr/local/Cellar/libiconv/1.14/lib'
 configure:9090: $? = 0
 configure:9096: ./conftest
 configure:9099: $? = 0
@@ -548,6 +587,7 @@ on MacBook-Pro-de-nark.local
 
 config.status:609: creating Makefile
 config.status:609: creating config.h
+config.status:849: config.h is unchanged
 configure:10795: === configuring in libwired (/Users/nark/Development/Me/Cocoa/Wired/wired/wire/libwired)
 configure:10898: running /bin/sh ./configure '--prefix=/usr/local'  '--enable-pthreads' 'LDFLAGS=-L/usr/local/Cellar/libiconv/1.14/lib' 'LIBS=-liconv' 'CPPFLAGS=-I/usr/local/Cellar/libiconv/1.14/include' '--enable-p7' '--enable-termcap' '--enable-iconv' '--enable-libxml2' '--with-rundir=../run/libwired' '--with-objdir=../obj' --cache-file=/dev/null --srcdir=.
 
@@ -607,7 +647,8 @@ ac_cv_header_unistd_h=yes
 ac_cv_header_zlib_h=yes
 ac_cv_host=i686-apple-darwin11.3.0
 ac_cv_lib_crypto_SHA1_Init=yes
-ac_cv_lib_iconv_iconv=yes
+ac_cv_lib_iconv_iconv=no
+ac_cv_lib_iconv_libiconv=yes
 ac_cv_lib_readline_rl_initialize=yes
 ac_cv_lib_termcap_tgoto=yes
 ac_cv_lib_xml2_xmlParseFile=yes
@@ -703,7 +744,7 @@ target_alias=''
 #define PACKAGE_VERSION "2.0"
 #define PACKAGE_STRING "wire 2.0"
 #define PACKAGE_BUGREPORT "dev@read-write.fr"
-#define WI_REVISION 605b1be
+#define WI_REVISION "86d79f6"
 #define WR_VERSION "2.0"
 #define WR_PROTOCOL_VERSION "1.1"
 #define WR_BUGREPORT "dev@read-write.fr"

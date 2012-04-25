@@ -1,0 +1,19 @@
+# xcode noise
+build/*
+*.pbxuser
+*.mode1v3
+DerivedData/*
+# old skool
+.svn
+
+# osx noise
+*.DS_Store
+*.com.apple.timemachine.supported
+profile
+
+# project related
+doc/*
+libwired/
+obj/*
+run/libwired/*
+*.o
