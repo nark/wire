@@ -21,10 +21,10 @@ WIREOBJECTS		= $(addprefix $(objdir)/wire/,$(notdir $(patsubst %.c,%.o,$(shell f
 
 DEFS			= -DHAVE_CONFIG_H
 CC				= gcc
-CFLAGS			= -g -O2
-CPPFLAGS		= -I/usr/local/Cellar/libiconv/1.14/include -I/usr/local/include -DWI_PTHREADS -DWI_CORESERVICES -DWI_CARBON -DWI_DIGESTS -DWI_CIPHERS -DWI_RSA -I/usr/include/libxml2 -DWI_LIBXML2 -DWI_PLIST -DWI_ZLIB -DWI_P7 -DWI_ICONV -DWI_TERMCAP -DWI_READLINE
-LDFLAGS			= -L$(rundir)/libwired/lib -L/usr/local/Cellar/libiconv/1.14/lib -L/usr/local/lib
-LIBS			= -lwired -liconv -framework CoreServices -framework Carbon -lcrypto -lxml2 -lz -ltermcap -lreadline
+CFLAGS			= -arch x86_64 -g -Os -pipe -no-cpp-precomp
+CPPFLAGS		= -I/usr/local/include -DWI_PTHREADS -DWI_CORESERVICES -DWI_CARBON -DWI_DIGESTS -DWI_CIPHERS -DWI_RSA -I/usr/include/libxml2 -DWI_LIBXML2 -DWI_PLIST -DWI_ZLIB -DWI_P7 -DWI_ICONV -DWI_TERMCAP -DWI_READLINE
+LDFLAGS			= -L$(rundir)/libwired/lib -arch x86_64 -bind_at_load -L/usr/local/lib
+LIBS			= -lwired -framework CoreServices -framework Carbon -lcrypto -lxml2 -lz -liconv -ltermcap -lreadline
 INCLUDES		= -I$(abs_top_srcdir) -I$(rundir)/libwired/include
 
 INSTALL			= /usr/bin/install -c

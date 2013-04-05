@@ -13,7 +13,6 @@ profile
 
 # project related
 doc/*
-libwired/
 obj/*
 run/libwired/*
 *.o

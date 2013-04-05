@@ -69,3 +69,26 @@ export CXXFLAGS="-arch x86_64 -g -Os -pipe"
 export LDFLAGS="-arch x86_64 -bind_at_load"
 
 LIBS="-liconv" LDFLAGS="-L/usr/local/Cellar/libiconv/1.14/lib" CPPFLAGS="-I/usr/local/Cellar/libiconv/1.14/include" ./configure --enable-pthreads
+
+
+
+Install readline 6.2 on Lion and higher:
+----------------------------------------
+
+cd readline-6.2-src/
+
+./configure
+
+cd shlib
+ 
+sed -e 's/-dynamic/-dynamiclib/' Makefile > Makefile.good
+ 
+mv Makefile.good Makefile
+ 
+cd ..
+ 
+make
+ 
+sudo make install
+
+
