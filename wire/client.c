@@ -424,7 +424,7 @@ static wi_p7_message_t * wr_client_info_message(void) {
 	message = wi_p7_message_with_name(WI_STR("wired.client_info"), wr_p7_spec);
 	wi_p7_message_set_string_for_name(message, WI_STR("Wire"), WI_STR("wired.info.application.name"));
 	wi_p7_message_set_string_for_name(message, wi_string_with_cstring(WR_VERSION), WI_STR("wired.info.application.version"));
-	wi_p7_message_set_string_for_name(message, WI_REVISION, WI_STR("wired.info.application.build"));
+	wi_p7_message_set_string_for_name(message, wi_string_with_cstring(WI_REVISION), WI_STR("wired.info.application.build"));
 	wi_p7_message_set_string_for_name(message, wi_process_os_name(wi_process()), WI_STR("wired.info.os.name"));
 	wi_p7_message_set_string_for_name(message, wi_process_os_release(wi_process()), WI_STR("wired.info.os.version"));
 	wi_p7_message_set_string_for_name(message, wi_process_os_arch(wi_process()), WI_STR("wired.info.arch"));
