@@ -14,6 +14,7 @@ To install Wire, you need the following prerequisites:
 
 These are usually distributed with operating systems.
 
+If compiling from the Git repository, GNU Autotools are also required.
 
 INSTALLATION
 ============
@@ -24,6 +25,17 @@ To install Wire, follow these instructions:
 
          tar -xzf wire-X.X.tar.gz
          cd wire-X.X.tar.gz
+
+      Alternatively, check out the latest source from Github:
+
+        git clone https://github.com/nark/wire.git
+        cd wire
+        git submodule init
+        git submodule update
+
+      And run the bootstrap script to generate the configure script:
+
+         ./autogen.sh
 
     2. Run the configuration script:
 
