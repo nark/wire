@@ -194,7 +194,7 @@ By Axel Andersson <%s>\n", WR_BUGREPORT);
 
 
 static void wr_version(void) {
-	fprintf(stderr, "Wire %s (%u), protocol %s %s\n",
+	fprintf(stderr, "Wire %s (%s), protocol %s %s\n",
 		WR_VERSION,
 		WI_REVISION,
 		wi_string_cstring(wi_p7_spec_name(wr_p7_spec)),
