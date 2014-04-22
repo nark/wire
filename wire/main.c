@@ -184,7 +184,7 @@ Options:\n\
     -h             display this message\n\
     -v             display version information\n\
 \n\
-If specified, ~/.wire/<bookmark> is loaded on startup.\n\
+If specified, ~/.wire2<bookmark> is loaded on startup.\n\
 \n\
 By Axel Andersson <%s>\n", WR_BUGREPORT);
 
