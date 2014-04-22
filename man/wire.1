@@ -41,10 +41,10 @@ is a screen-oriented Wired client. It is used to connect to Wired servers.
 At startup,
 .Nm wire
 will read
-.Pa ~/.wire/config
+.Pa ~/.wire2/config
 and interpret and execute each line as a command. Similarly, if a named bookmark is given as an argument to
 .Nm wire ,
-.Pa ~/.wire/bookmark
+.Pa ~/.wire2/bookmark
 will also be read and interpreted. Note that commands in bookmarks should not be prepended by a
 .Sq /
 character.
@@ -127,7 +127,7 @@ Loads a custom icon from an image file. It is recommended that the image is in P
 .Nm wire ,
 but only in other graphical clients.
 .Pp
-Example: /icon ~/.wire/icon.png
+Example: /icon ~/.wire2/icon.png
 .Pp
 .It Nm ignore Op Ar nick
 Manage user ignores. Without arguments, shows the current list of ignores, identified by id. With an argument, adds a user to the list. No chat or messages are printed from users whose nicks match an entry in the ignore list.
@@ -153,7 +153,7 @@ See also:
 .Nm ban
 .It Nm load Ar bookmark
 Loads a bookmark with the name provided from
-.Pa ~/.wire/ .
+.Pa ~/.wire2/ .
 .Pp
 Example: /load myserver
 .It Nm log Ar filename
@@ -243,7 +243,7 @@ Deletes the path.
 Example: /rm /Uploads
 .It Nm save Ar bookmark
 Saves the current settings and connection as a bookmark in
-.Pa ~/.wire/ .
+.Pa ~/.wire2/ .
 .Pp
 Example: /save myserver
 .It Nm search Ar query
@@ -312,9 +312,9 @@ Example: /who
 .El
 .Sh FILES
 .Bl -tag -width
-.It Pa ~/.wire/config
+.It Pa ~/.wire2/config
 Default configuration file. Read at startup. Consists of a newline separated list of commands.
-.It Pa ~/.wire/bookmark
+.It Pa ~/.wire2/bookmark
 A named bookmark. Read at startup if
 .Ar bookmark
 is specified. Read at runtime using the
