@@ -67,10 +67,6 @@ Wire Client is designed to be installed into `/usr/local` by default. To change 
 
 	./configure --prefix=/path	
 
-To change the default user the installation will write files as, run:
-
-	./configure --with-user=USER
-
 If you installed OpenSSL in a non-standard path, use the following command example as reference:
 
 	env CPPFLAGS=-I/usr/local/opt/openssl/include \
