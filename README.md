@@ -12,24 +12,7 @@ This tutorial explains how to install and run Wire Client on an UNIX-like operat
 
 **Debian/Ubuntu**
 
-	sudo apt-get install -y build-essential autoconf screen git libsqlite3-dev libxml2-dev libssl-dev zlib1g-dev autotools-dev automake
-
-**Archlinux**
-
-	sudo pacman -Sy base-devel autoconf screen git sqlite3 libxml2 zlib
-
-**CentOS 7**
-
-	sudo yum -y install screen git libtool openssl-devel sqlite-devel.x86_64 libxml2-devel zlib-devel autoconf gcc make
-
-**CentOS 8 / Fedora 28/29/30/31 (and probably even older versions of Fedora)**
-
-	sudo yum -y install screen git libtool openssl-devel sqlite-devel libxml2-devel zlib-devel autoconf gcc make
-
-**openSUSE Leap 42.3 (and probably other Versions)**
-
-	sudo zypper install -t pattern devel_basis 
-	sudo zypper install screen git sqlite3-devel libxml2-devel libz1 openssl-devel
+	sudo apt-get install -y build-essential autoconf screen git libxml2-dev libssl-dev zlib1g-dev libreadline-dev
 
 ### Getting started
 
@@ -104,7 +87,7 @@ It´s advised to run it in a screen-Session.
 
 To start an installed Wire Client, run:
 
-	screen -dm /usr/local/bin/wire
+	screen -dm wire /usr/local/bin/wire
 
 To enter the running screen session simply type:
 	
