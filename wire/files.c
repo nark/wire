@@ -81,8 +81,8 @@ wi_string_t *						wr_files_cwd;
 wi_string_t *						wr_files_ld;
 wi_mutable_array_t					*wr_files;
 
-wr_ls_state_t						wr_ls_state;
-wr_stat_state_t						wr_stat_state;
+wr_ls_state_t						wr_ls_state_2;
+wr_stat_state_t						wr_stat_state_2;
 
 static wi_runtime_id_t				wr_file_runtime_id = WI_RUNTIME_ID_NULL;
 static wi_runtime_class_t			wr_file_runtime_class = {
@@ -156,7 +156,7 @@ char * wr_readline_filename_generator(const char *text, int state) {
 	while(index < count) {
 		file = WI_ARRAY(wr_files, index++);
         
-		if(file->type == WR_FILE_FILE && wr_ls_state == WR_LS_COMPLETING_DIRECTORY)
+		if(file->type == WR_FILE_FILE && wr_ls_state_2 == WR_LS_COMPLETING_DIRECTORY)
 			continue;
         
 		if(root || wi_string_index_of_string(file->name, name, WI_STRING_SMART_CASE_INSENSITIVE) == 0) {
@@ -314,7 +314,7 @@ static void * wr_files_glob_opendir(const char *path) {
 	dir = wi_malloc(sizeof(wr_files_glob_dir_t));
 	dir->path = wi_retain(wr_files_full_path(wi_string_with_cstring(path)));
 	
-	wr_ls_state = WR_LS_GLOBBING;
+	wr_ls_state_2 = WR_LS_GLOBBING;
 	wr_files_clear();
 	// wr_send_command(WI_STR("LIST %@"), dir->path);
 	wr_runloop_run_for_socket(wr_socket, 3.0, 411);
