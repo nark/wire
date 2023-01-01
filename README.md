@@ -22,9 +22,9 @@ Installing Wire Client from sources will be done using the Autotools standard (c
 
 	git clone https://github.com/ProfDrLuigi/wire wire
 
-Then move to the `wired` directory:
+Then move to the `wire` directory:
 
-	cd wired/
+	cd wire/
 
 Initialize and update submodules repositories:
 
@@ -111,6 +111,7 @@ Example configuration:
 
 	open -l USER -p PASSWORT -P PORT URL
 	nick YOUR_NAME
+	status YOUR_STATUS_
 	icon YOUR_ICON.png
 	
 You can use bookmarks too. Simply name the file e.g. "my_server" and locate it in the .wire directory. Call it this way:
