@@ -118,6 +118,13 @@ You can use bookmarks too. Simply name the file e.g. "my_server" and locate it i
 
 	/usr/local/bin/wire my_server
 
+
+If you want to know the available commands of the client type
+
+	/help
+	
+in the Chat Main window.
+
 ### Get More
 
 If you are interested in the Wired project, check the Website at [https://wired.read-write.fr/](https://wired.read-write.fr)
