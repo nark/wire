@@ -125,6 +125,10 @@ If you want to know the available commands of the client type
 	
 in the Chat Main window.
 
+If you got/send a msg you can cycle through the windows with:
+
+	ctrl+n / ctrl+p
+
 ### Get More
 
 If you are interested in the Wired project, check the Website at [https://wired.read-write.fr/](https://wired.read-write.fr)
