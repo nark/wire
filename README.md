@@ -22,7 +22,7 @@ Installing Wire Client from sources will be done using the Autotools standard (c
 
 ##### 1. Get Wire Client sources via Terminal (git must be installed!):
 
-	git clone https://github.com/ProfDrLuigi/wire wire
+	git clone https://github.com/ProfDrLuigi/wire-cli-bot
 
 Then move to the `wire` directory:
 
