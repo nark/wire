@@ -1,10 +1,12 @@
-# Wired Client for UNIX
+# Wired CLI Bot for UNIX
 
 ## Introduction
 
-Wire is a command line client for the Wired 2.0 + 2.5 protocol.
+Wire-Cli-Bot is a command line client for the Wired 2.0 + 2.5 protocol.
 
-## Install Wire (UNIX-like systems)
+This is the former CLI client "wire" which has now been extended with bot functions by me. It is now controlled via Bash. See the file "cmd.sh" which must be located in the ~/.wire folder for details.
+
+## Install Wire-CLI-Bot (UNIX-like systems)
 
 This tutorial explains how to install and run Wire Client on an UNIX-like operating system. (Linux, BSD, OSX, etc)
 
@@ -83,15 +85,15 @@ This will require write permissions to `/usr/local/bin`, or whatever directory y
 
 ##### 6. Running Wire client
 
-It´s advised to run it in a screen-Session.
+It´s designed to run it in a screen-Session.
 
-To start an installed Wire Client, run:
+To start an installed Wire-Cli-Bot, run:
 
-	screen -dm wire /usr/local/bin/wire
+	screen -Sdm wirebot /usr/local/bin/wire
 
 To enter the running screen session simply type:
 	
-	screen -r
+	screen -rS wirebot
 	
 To leave the session (not closing!) type
 
@@ -111,8 +113,8 @@ Example configuration:
 
 	open -l USER -p PASSWORT -P PORT URL
 	nick YOUR_NAME
-	status YOUR_STATUS_
-	icon YOUR_ICON.png
+	status YOUR_STATUS
+	icon YOUR_ICON.png (absolute path)
 	
 You can use bookmarks too. Simply name the file e.g. "my_server" and locate it in the .wire directory. Call it this way:
 
