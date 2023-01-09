@@ -29,6 +29,7 @@
 #include "config.h"
 
 #include <stdio.h>
+#include <string.h>
 #include <readline/readline.h>
 #include <wired/wired.h>
 
@@ -73,6 +74,10 @@ static wi_runtime_class_t			wr_window_runtime_class = {
 	NULL
 };
 
+
+void delete_output() {
+	system("/usr/bin/rm /home/pi/.wire/output.txt");
+}
 
 void wr_windows_initialize(void) {
 	wr_window_runtime_id = wi_runtime_register_class(&wr_window_runtime_class);
@@ -398,7 +403,6 @@ void wr_printf(wi_string_t *fmt, ...) {
 	va_start(ap, fmt);
 	string = wi_string_init_with_format_and_arguments(wi_string_alloc(), fmt, ap);
 	va_end(ap);
-
 	wr_wprint(wr_current_window, string);
 
 	wi_release(string);
@@ -407,20 +411,28 @@ void wr_printf(wi_string_t *fmt, ...) {
 
 
 void wr_wprintf(wr_window_t *window, wi_string_t *fmt, ...) {
-	wi_string_t		*string;
-	va_list			ap;
+        wi_string_t             *string;
+        va_list                 ap;
 
-	va_start(ap, fmt);
-	string = wi_string_init_with_format_and_arguments(wi_string_alloc(), fmt, ap);
-	va_end(ap);
+        va_start(ap, fmt);
 
-	wr_wprint(window, string);
+        string = wi_string_init_with_format_and_arguments(wi_string_alloc(), fmt, ap);
+        va_end(ap);
+        wr_wprint(window, string);
+		
+		//luigi
+        FILE *fp;
+        fp = fopen("/home/pi/.wire/output.txt", "w");
+        if (fp == NULL) {
+        } else {
+                fputs(wi_string_cstring(string), fp);
+                fclose(fp);
+        }
+        
+        system("/bin/bash /home/pi/.wire/check.sh");
 	
-	wi_release(string);
+        wi_release(string);
 }
-
-
-
 void wr_printf_prefix(wi_string_t *fmt, ...) {
 	wi_string_t		*string;
 	va_list			ap;
@@ -513,44 +525,14 @@ void wr_wprint(wr_window_t *window, wi_string_t *string) {
 
 
 
-void wr_wprint_say(wr_window_t *window, wi_string_t *nick, wi_string_t *chat) {
-	wi_string_t		*prefix;
-	const char		*color;
-	wi_uinteger_t	length;
+void wr_wprint_say(wr_window_t *window, wi_string_t *name, wi_string_t *chat) {
 
-	length = wi_string_length(wr_nick);
+	//luigi
+	wr_wprintf(window, WI_STR("%@ -###- %@"), name, chat);
 
-	if(length > 4)
-		length = 4;
-
-	prefix = wi_string_substring_to_index(wr_nick, length);
-	
-	if(wi_string_has_prefix(chat, prefix)) {
-		color = WR_HIGHLIGHT_COLOR;
-		
-		if(window->status < WR_WINDOW_STATUS_HIGHLIGHT)
-			window->status = WR_WINDOW_STATUS_HIGHLIGHT;
-	} else {
-		color = WR_NICK_COLOR;
-		
-		if(window->status < WR_WINDOW_STATUS_CHAT)
-			window->status = WR_WINDOW_STATUS_CHAT;
-	}
-		
-	wr_wprintf(window, WI_STR("%s<%s%s%@%s%s>%s %@"),
-		WR_SAY_COLOR,
-		WR_TERMINATE_COLOR,
-		color,
-		nick,
-		WR_TERMINATE_COLOR,
-		WR_SAY_COLOR,
-		WR_TERMINATE_COLOR,
-		chat);
 }
 
-
-
-void wr_wprint_me(wr_window_t *window, wi_string_t *nick, wi_string_t *chat) {
+void wr_wprint_me(wr_window_t *window, wi_string_t *name, wi_string_t *chat) {
 	wi_string_t		*prefix;
 	const char		*color;
 	wi_uinteger_t	length;
@@ -578,7 +560,7 @@ void wr_wprint_me(wr_window_t *window, wi_string_t *nick, wi_string_t *chat) {
 		WR_ME_COLOR,
 		WR_TERMINATE_COLOR,
 		color ? color : "",
-		nick,
+		name,
 		color ? WR_TERMINATE_COLOR : "",
 		chat);
 }
@@ -607,6 +589,7 @@ void wr_print_topic(void) {
 		wr_printf_prefix(WI_STR("Topic set by %@ - %@"),
 			wr_topic_user_nick(wr_current_window->topic),
 			wi_date_string_with_format(wr_topic_time(wr_current_window->topic), WI_STR("%a %b %e %T %Y")));
+		delete_output();
 	}
 }
 
