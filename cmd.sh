@@ -1,6 +1,8 @@
 #!/bin/bash
 #
 #
+#### Put this file into your .wire home directory
+
 
 SELF=$(SELF=$(dirname "$0") && bash -c "cd \"$SELF\" && pwd")
 cd "$SELF"
