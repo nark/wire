@@ -31,8 +31,8 @@
 
 #include <signal.h>
 
-#define WR_WIRE_PATH					".wire"
-#define WR_WIRE_CONFIG_PATH				".wire/config"
+#define WR_WIRE_PATH					".wirebot"
+#define WR_WIRE_CONFIG_PATH				".wirebot/config"
 
 enum _wr_completer {
 	WR_COMPLETER_NONE					= 0,
