@@ -95,7 +95,7 @@ static void								wr_command_uptime(wi_array_t *);
 static void								wr_command_version(wi_array_t *);
 static void								wr_command_who(wi_array_t *);
 static void								wr_command_ls(wi_array_t *);
-static void								wr_command_mv(wi_array_t *);
+static void								wr_command_afk(wi_array_t *);
 static void								wr_command_rm(wi_array_t *);
 
 #define WR_COMMAND_INFO_DESCRIPTION		"Get info for the user"
@@ -252,10 +252,10 @@ static wr_commands_t			wr_commands[] = {
       true, "Print the files list", "<path>",
       true, 0, -1, WR_COMPLETER_COMMAND,
       wr_command_ls },
-    { "mv",
-      true, "Move a file", "<source> <destination>",
-      true, 2, 1, WR_COMPLETER_COMMAND,
-      wr_command_mv },
+    { "afk",
+      true, "Away from Keyboard", "Enter idle mode",
+      true, 0, -1, WR_COMPLETER_COMMAND,
+      wr_command_afk },
     { "rm",
       true, "Delete a file", "<path>",
       true, 1, 1, WR_COMPLETER_COMMAND,
@@ -1278,23 +1278,17 @@ static void wr_command_ls(wi_array_t *arguments) {
 
 
 /*
-    /mv
+    /afk
 */
 
-static void wr_command_mv(wi_array_t *arguments) {
-    
-    wi_p7_message_t     *message;
-    wi_string_t         *path, *new_path;
-    
-    path        = wi_array_data_at_index(arguments, 0);
-    new_path    = wi_array_data_at_index(arguments, 1);
-    
-    message     = wi_p7_message_with_name(WI_STR("wired.file.move"), wr_p7_spec);
-    wi_p7_message_set_string_for_name(message, path, WI_STR("wired.file.path"));
-    wi_p7_message_set_string_for_name(message, new_path, WI_STR("wired.file.new_path"));
-    wr_commands_send_message(message, WI_STR("mv"));
-}
+static void wr_command_afk(wi_array_t *arguments) {
+    wi_p7_message_t * 		message;
 
+		message = wi_p7_message_with_name(WI_STR("wired.user.set_idle"), wr_p7_spec);
+		wi_p7_message_set_bool_for_name(message, true, WI_STR("wired.user.idle"));
+
+		wr_commands_send_message(message, WI_STR("afk"));
+}
 
 /*
     /rm
@@ -1310,4 +1304,3 @@ static void wr_command_rm(wi_array_t *arguments) {
     wi_p7_message_set_string_for_name(message, path, WI_STR("wired.file.path"));
     wr_commands_send_message(message, WI_STR("rm"));
 }
-
