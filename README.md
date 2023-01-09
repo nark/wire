@@ -85,7 +85,7 @@ Or, on BSD-like unices, type:
 
 This will require write permissions to `/usr/local/bin`, or whatever directory you set as the prefix above. Depending of your OS setup, you may require to use `sudo`.
 
-##### 6. Running Wire client
+##### 6. Running Wire-CLI-Bot
 
 It´s designed to run it in a screen-Session.
 
@@ -94,6 +94,9 @@ To start an installed Wire-Cli-Bot, run:
 	screen -Sdm wirebot /usr/local/bin/wire
 
 It´s very important to run it this way because all Bot-Functions assumes that there is a screen session "wirebot" (p0) running.
+
+You can inject any Text from any script to the session this way:
+	screen -S wirebot -p0 -X stuff "Hello world!"^M
 
 To enter the running screen session simply type:
 	
