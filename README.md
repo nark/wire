@@ -6,9 +6,7 @@ Wire-Cli-Bot is a command line client for the Wired 2.0 + 2.5 protocol.
 
 This is the former CLI client "wire" (https://github.com/nark/wire) which has now been extended with bot functions by me. It is controlled via bash. See the file "cmd.sh" (which must be located in the ~/.wire folder) for details.
 
-However, the name of the binary file has not changed. This still remains "wire". Only the repo has a different name to distinguish it from the old wire project.
-
-## Install Wire-CLI-Bot (UNIX-like systems)
+## Install wirebot (UNIX-like systems)
 
 This tutorial explains how to install and run Wire-CLI-Bot on an UNIX-like operating system. (Linux, BSD, OSX, etc)
 
@@ -24,11 +22,11 @@ Installing Wire Client from sources will be done using the Autotools standard (c
 
 ##### 1. Get Wire Client sources via Terminal (git must be installed!):
 
-	git clone https://github.com/ProfDrLuigi/wire-cli-bot
+	git clone https://github.com/ProfDrLuigi/wirebot
 
 Then move to the `wire` directory:
 
-	cd wire-cli-bot/
+	cd wirebot/
 
 Initialize and update submodules repositories:
 
@@ -91,7 +89,7 @@ It´s designed to run it in a screen-Session.
 
 To start an installed Wire-Cli-Bot, run:
 
-	screen -Sdm wirebot /usr/local/bin/wire
+	screen -Sdm wirebot /usr/local/bin/wirebot
 
 It´s very important to run it this way because all Bot-Functions assumes that there is a screen session "wirebot" (p0) running.
 
@@ -115,7 +113,7 @@ If you are not familiar with "screen" visit this Site e.g.:
 
 Default path for the configuration file is:
 
-	~/.wire/wire.conf
+	~/.wirebot/wirebot.conf
 	
 Example configuration:
 
@@ -126,7 +124,7 @@ Example configuration:
 	
 You can use bookmarks too. Simply name the file e.g. "my_server" and locate it in the .wire directory. Call it this way:
 
-	/usr/local/bin/wire my_server
+	/usr/local/bin/wirebot my_server
 
 
 If you want to know the available commands of the client type
