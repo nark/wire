@@ -41,6 +41,10 @@ if [ -f cmd.stop ]; then
     print_msg
     exit
   fi
+elif [ ! -f cmd.stop ]; then
+  if [ "$command" = "!start" ]; then
+  	exit
+  fi
 fi  
 
 if [[ "$command" == *"Using timestamp"* ]]; then
@@ -51,7 +55,7 @@ fi
 if [ $user_join = 1 ]; then
   if [[ "$command" == *" has joined" ]]; then
     nick=$( cat "$out_file" | sed -e 's/.*\]\ //g' -e 's/\ has\ joined//g' -e 's/;0m//g' | xargs )
-    say="Hi $nick :-)"
+    say="Hi $nick :relaxed:"
     print_msg
   fi
 fi
@@ -72,9 +76,9 @@ fi
 
 if [ $wordpolice = 1 ]; then
   if [ "$command" = "shit" ] || [[ "$command" = *"fuck"* ]] || [ "$command" = "asshole" ] || [ "$command" = "ass" ] || [ "$command" = "dick" ]; then
-    answ[0]="$nick, don't be rude please..."
-    answ[1]="Very impolite!"
-    answ[2]="Hey, why did you say \"$command\" ?"
+    answ[0]="$nick, don't be rude please... :thumbsdown:"
+    answ[1]="Very impolite! :angry:"
+    answ[2]="Hey, why did you say \"$command\" ? :anguished: :pensive:"
     rnd_answer
     exit
   fi
@@ -84,7 +88,7 @@ fi
 if [ $greeting = 1 ]; then
   if [ "$command" = "hello" ] || [ "$command" = "hey" ] || [ "$command" = "hi" ]; then
     answ[0]="Hey $nick. :-)"
-    answ[1]="Hello $nick. :-)"
+    answ[1]="Hello $nick. :wave:"
     answ[2]="Hi $nick. :-)"
     answ[3]="Yo $nick. :-)"
     answ[4]="Yo man ... whazzup? :v:"
@@ -114,7 +118,7 @@ if [[ "$nick_low" == *"luigi"* ]]; then
   
   if [ "$command" = "!stop" ]; then
     answ[0]="Ping me when you need me. :-)"
-    answ[1]="I jump."    
+    answ[1]="I jump :exclamation:"    
     rnd_answer
     say="/afk"
     print_msg
