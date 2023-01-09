@@ -96,6 +96,7 @@ To start an installed Wire-Cli-Bot, run:
 It´s very important to run it this way because all Bot-Functions assumes that there is a screen session "wirebot" (p0) running.
 
 You can inject any Text from any script to the session this way:
+	
 	screen -S wirebot -p0 -X stuff "Hello world!"^M
 
 To enter the running screen session simply type:
