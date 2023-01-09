@@ -26,7 +26,7 @@ Installing Wire Client from sources will be done using the Autotools standard (c
 
 Then move to the `wire` directory:
 
-	cd wire/
+	cd wire-cli-bot/
 
 Initialize and update submodules repositories:
 
