@@ -113,7 +113,7 @@ If you are not familiar with "screen" visit this Site e.g.:
 
 Default path for the configuration file is:
 
-	~/.wirebot/wirebot.conf
+	~/.wirebot/config
 	
 Example configuration:
 
