@@ -3,19 +3,17 @@
 #
 #### Put this file into your .wire home directory
 
-
 SELF=$(SELF=$(dirname "$0") && bash -c "cd \"$SELF\" && pwd")
 cd "$SELF"
 
 out_file="cmd.txt"
-screenid="4"
 
 nick=$( cat "$out_file" | sed 's/-###.*//g' | xargs )
 nick_low=$( echo "$nick" | tr '[:upper:]' '[:lower:]' )
 command=$( cat "$out_file" | sed 's/.*-###-//g' | xargs )
 
 function print_msg {
-  /usr/bin/screen -p$screenid -X stuff "$say"^M
+  /usr/bin/screen -S wirebot -X stuff "$say"^M
 }
 
 function rnd_answer {
