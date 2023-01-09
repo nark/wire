@@ -33,7 +33,7 @@
 #include "topic.h"
 #include "users.h"
 
-#define WR_PREFIX							"[wire] "
+#define WR_PREFIX							"[wirebot] "
 
 #define WR_BLACK_COLOR						"\033[0;30m"
 #define WR_RED_COLOR						"\033[0;31m"
