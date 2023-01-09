@@ -4,11 +4,11 @@
 
 Wire-Cli-Bot is a command line client for the Wired 2.0 + 2.5 protocol.
 
-This is the former CLI client "wire" (https://github.com/nark/wire) which has now been extended with bot functions by me. It is now controlled via Bash. See the file "cmd.sh" which must be located in the ~/.wire folder for details.
+This is the former CLI client "wire" (https://github.com/nark/wire) which has now been extended with bot functions by me. It is controlled via bash. See the file "cmd.sh" (which must be located in the ~/.wire folder) for details.
 
 ## Install Wire-CLI-Bot (UNIX-like systems)
 
-This tutorial explains how to install and run Wire Client on an UNIX-like operating system. (Linux, BSD, OSX, etc)
+This tutorial explains how to install and run Wire-CLI-Bot on an UNIX-like operating system. (Linux, BSD, OSX, etc)
 
 #### Howto install on:
 
