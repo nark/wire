@@ -2,6 +2,7 @@
 #
 #
 #### Put this file into your .wire home directory
+#### Make sure to make a "chmod +x cmd.sh" before.
 
 ####################################################
 #### Switch desired function on or off (0 or 1).####
@@ -85,7 +86,8 @@ if [ $greeting = 1 ]; then
     answ[0]="Hey $nick. :-)"
     answ[1]="Hello $nick. :-)"
     answ[2]="Hi $nick. :-)"
-    answ[2]="Yo $nick. :-)"
+    answ[3]="Yo $nick. :-)"
+    answ[4]="Yo man ... whazzup? :v:"
     rnd_answer
   fi
 fi
