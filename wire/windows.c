@@ -30,6 +30,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include <readline/readline.h>
 #include <wired/wired.h>
 
@@ -73,11 +74,6 @@ static wi_runtime_class_t			wr_window_runtime_class = {
 	NULL,
 	NULL
 };
-
-
-void delete_output() {
-	system("/usr/bin/rm /home/pi/.wire/output.txt");
-}
 
 void wr_windows_initialize(void) {
 	wr_window_runtime_id = wi_runtime_register_class(&wr_window_runtime_class);
@@ -421,15 +417,28 @@ void wr_wprintf(wr_window_t *window, wi_string_t *fmt, ...) {
         wr_wprint(window, string);
 		
 		//luigi
+		
+		char *filename = "/.wire/cmd.txt";
+    	char *home_dir = getenv("HOME");
+    	char *filepath = malloc(strlen(home_dir) + strlen(filename) + 1);
+    	strncpy(filepath, home_dir, strlen(home_dir) + 1);
+    	strncat(filepath, filename, strlen(filename) + 1);
+		
         FILE *fp;
-        fp = fopen("/home/pi/.wire/output.txt", "w");
+        fp = fopen(filepath, "w");
         if (fp == NULL) {
         } else {
                 fputs(wi_string_cstring(string), fp);
                 fclose(fp);
         }
         
-        system("/bin/bash /home/pi/.wire/check.sh");
+        char *filename2 = "/.wire/./cmd.sh";
+    	char *home_dir2 = getenv("HOME");
+    	char *filepath2 = malloc(strlen(home_dir) + strlen(filename2) + 1);
+    	strncpy(filepath2, home_dir2, strlen(home_dir2) + 1);
+    	strncat(filepath2, filename2, strlen(filename2) + 1);
+        
+        system(filepath2);
 	
         wi_release(string);
 }
@@ -589,7 +598,7 @@ void wr_print_topic(void) {
 		wr_printf_prefix(WI_STR("Topic set by %@ - %@"),
 			wr_topic_user_nick(wr_current_window->topic),
 			wi_date_string_with_format(wr_topic_time(wr_current_window->topic), WI_STR("%a %b %e %T %Y")));
-		delete_output();
+		//system("/usr/bin/rm /home/pi/.wire/output.txt");
 	}
 }
 

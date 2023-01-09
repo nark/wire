@@ -62,5 +62,6 @@ extern wi_p7_socket_t					*wr_p7_socket;
 extern wi_string_t						*wr_password;
 
 extern wi_boolean_t						wr_connected;
+extern wi_p7_uint32_t					wb_user_id;
 
 #endif /* WR_CLIENT_H */

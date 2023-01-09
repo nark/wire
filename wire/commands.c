@@ -1288,6 +1288,7 @@ static void wr_command_afk(wi_array_t *arguments) {
 		wi_p7_message_set_bool_for_name(message, true, WI_STR("wired.user.idle"));
 
 		wr_commands_send_message(message, WI_STR("afk"));
+
 }
 
 /*
@@ -1304,3 +1305,4 @@ static void wr_command_rm(wi_array_t *arguments) {
     wi_p7_message_set_string_for_name(message, path, WI_STR("wired.file.path"));
     wr_commands_send_message(message, WI_STR("rm"));
 }
+

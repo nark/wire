@@ -110,8 +110,7 @@ wi_p7_socket_t						*wr_p7_socket;
 wi_string_t							*wr_password;
 
 wi_boolean_t						wr_connected;
-
-
+wi_p7_uint32_t						wb_user_id;
 
 void wr_client_init(void) {
 	wr_server_string_encoding = wi_string_encoding_init_with_charset(
