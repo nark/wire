@@ -93,6 +93,8 @@ To start an installed Wire-Cli-Bot, run:
 
 	screen -Sdm wirebot /usr/local/bin/wire
 
+It´s very important to run it this way because all Bot-Functions assumes that there is a screen session "wirebot" (p0) running.
+
 To enter the running screen session simply type:
 	
 	screen -rS wirebot
