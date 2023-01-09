@@ -30,11 +30,13 @@ fi
 if [[ "$command" == *" has joined" ]]; then
   nick=$( cat "$out_file" | sed -e 's/.*\]\ //g' -e 's/\ has\ joined//g' -e 's/;0m//g' | xargs )
   say="Hi $nick (-:"
+  print_msg
 fi
 
 if [[ "$command" == *" has left" ]]; then
   nick=$( cat "$out_file" | sed -e 's/.*\]\ //g' -e 's/\ has\ left//g' -e 's/;0m//g' | xargs )
-  say="Bye $nick ☹️".
+  say="Bye $nick :worried:".
+  print_msg
 fi
 
 if [[ "$nick_low" == *"luigi"* ]]; then
