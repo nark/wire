@@ -39,7 +39,8 @@ fi
 
 if [[ "$nick_low" == *"luigi"* ]]; then
   if [ "$command" = "!test" ]; then
-    say="Weeeeeeeee :-)"
+    say="Weeeeeeeee :blush:"
+    print_msg
   fi
   if [ "$command" = "!sleep" ]; then
     answ[0]=":zzz:"
