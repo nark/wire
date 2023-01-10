@@ -14,7 +14,7 @@ This tutorial explains how to install and run Wire-CLI-Bot on an UNIX-like opera
 
 **Debian/Ubuntu**
 
-	sudo apt-get install -y build-essential autoconf screen git libxml2-dev libssl-dev zlib1g-dev libreadline-dev
+	sudo apt-get install -y build-essential autoconf screen inotify-tools git libxml2-dev libssl-dev zlib1g-dev libreadline-dev
 
 ### Getting started
 
