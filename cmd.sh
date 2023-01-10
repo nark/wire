@@ -12,6 +12,12 @@ user_leave=1
 wordpolice=1
 greeting=1
 ####################################################
+
+
+####################################################
+######### Watch a directory for new files ##########
+####################################################
+#watcher=1
 watchdir="/mnt/filez/00 Upload Folders/Mac"
 ####################################################
 
@@ -25,7 +31,7 @@ nick_low=$( echo "$nick" | tr '[:upper:]' '[:lower:]' )
 command=$( cat "$out_file" | sed 's/.*-###-//g' | xargs )
 
 function print_msg {
-  /usr/bin/screen -S wirebot -p0 -X stuff "$say"^M
+  /usr/bin/screen -S wirebot -p0 -X stuff "$say"
 }
 
 function rnd_answer {
@@ -44,11 +50,36 @@ function watcher_def {
 }
 
 function watcher_start {
-  /usr/bin/screen -S wirebot -x -X screen -t watcher bash -c "bash "$SELF"/cmd.sh watcher_def; exec bash"
+  check=$( ps ax | grep "inotifywait" | grep "$watchdir" )
+  if [ "$check" != "" ]; then
+    say="Watcher already running!"
+    print_msg
+  else
+    /usr/bin/screen -S wirebot -x -X screen -t watcher bash -c "bash "$SELF"/cmd.sh watcher_def; exec bash"
+    say="Watcher started."
+    print_msg
+  fi
+
+  sleep 1
+  ps ax | grep -v grep | grep "inotifywait*.* $watchdir" | sed 's/\ .*//g' | xargs > watcher.pid
 }
 
 function watcher_stop {
-  pkill -f inotifywait
+  if ! [ -f watcher.pid ]; then
+    say="Watcher was not running!"
+    print_msg
+  else
+    watcher_pid=$( cat watcher.pid )
+    kill -KILL "$watcher_pid"
+    rm watcher.pid
+  fi
+}
+
+function kill_screen {
+  if [ -f watcher.pid ]; then
+    rm watcher.pid
+  fi
+  /usr/bin/screen -XS wirebot quit
 }
 
 
@@ -144,14 +175,17 @@ if [[ "$nick_low" == *"luigi"* ]]; then
     touch cmd.stop
   fi
   if [ "$command" = "!watcher_start" ]; then
-    say="Watcher started"
-    print_msg
     watcher_start
   fi
   if [ "$command" = "!watcher_stop" ]; then
     say="Watcher stopped"
     print_msg
     watcher_stop
+  fi
+  if [ "$command" = "!kill_screen" ]; then
+    say="Cya."
+    print_msg
+    kill_screen
   fi
 fi
 
