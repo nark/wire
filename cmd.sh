@@ -18,7 +18,7 @@ greeting=1
 ######### Watch a directory for new files ##########
 ####################################################
 #watcher=1
-watchdir="/mnt/filez/00 Upload Folders/Mac"
+watchdir="/PATH/TO/FOLDER"
 ####################################################
 
 SELF=$(SELF=$(dirname "$0") && bash -c "cd \"$SELF\" && pwd")
