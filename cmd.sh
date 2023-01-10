@@ -12,6 +12,8 @@ user_leave=1
 wordpolice=1
 greeting=1
 ####################################################
+watchdir="/mnt/filez/00 Upload Folders/Mac"
+####################################################
 
 SELF=$(SELF=$(dirname "$0") && bash -c "cd \"$SELF\" && pwd")
 cd "$SELF"
@@ -33,9 +35,26 @@ function rnd_answer {
   print_msg
 }
 
+function watcher_def {
+  inotifywait -m -e create,moved_to "$watchdir" | while read DIRECTORY EVENT FILE; do
+    say=$( echo "$FILE" |sed -e 's/.*CREATE\ //g' -e 's/.*MOVED_TO\ //g' -e 's/.*ISDIR\ //g' )
+    say=$( echo "New Mac Stuff has arrived: $say" )
+    print_msg
+  done
+}
+
+function watcher_start {
+  /usr/bin/screen -S wirebot -x -X screen -t watcher bash -c "bash "$SELF"/cmd.sh watcher_def; exec bash"
+}
+
+function watcher_stop {
+  pkill -f inotifywait
+}
+
+
 if [ -f cmd.stop ]; then
   if [ "$command" = "!start" ]; then
-  	rm cmd.stop
+        rm cmd.stop
   elif [ "$command" = "!stop" ]; then
     say="/afk"
     print_msg
@@ -43,9 +62,9 @@ if [ -f cmd.stop ]; then
   fi
 elif [ ! -f cmd.stop ]; then
   if [ "$command" = "!start" ]; then
-  	exit
+        exit
   fi
-fi  
+fi
 
 if [[ "$command" == *"Using timestamp"* ]]; then
   rm cmd.stop
@@ -55,7 +74,7 @@ fi
 if [ $user_join = 1 ]; then
   if [[ "$command" == *" has joined" ]]; then
     nick=$( cat "$out_file" | sed -e 's/.*\]\ //g' -e 's/\ has\ joined//g' -e 's/;0m//g' | xargs )
-    say="Hi $nick :relaxed:"
+    say="Hi $nick :grinning:"
     print_msg
   fi
 fi
@@ -104,7 +123,7 @@ if [[ "$nick_low" == *"luigi"* ]]; then
   fi
   if [ "$command" = "!sleep" ]; then
     answ[0]=":zzz:"
-    answ[1]=":sleeping: … Time for a nap."    
+    answ[1]=":sleeping: … Time for a nap."
     rnd_answer
     say="/afk"
     print_msg
@@ -112,16 +131,28 @@ if [[ "$nick_low" == *"luigi"* ]]; then
   if [ "$command" = "!start" ]; then
     answ[0]="Yes, my lord."
     answ[1]="I need more blood."
-    answ[2]="Ready to serve."    
+    answ[2]="Ready to serve."
     rnd_answer
   fi
-  
+
   if [ "$command" = "!stop" ]; then
     answ[0]="Ping me when you need me. :-)"
-    answ[1]="I jump :exclamation:"    
+    answ[1]="I jump :exclamation:"
     rnd_answer
     say="/afk"
     print_msg
     touch cmd.stop
   fi
+  if [ "$command" = "!watcher_start" ]; then
+    say="Watcher started"
+    print_msg
+    watcher_start
+  fi
+  if [ "$command" = "!watcher_stop" ]; then
+    say="Watcher stopped"
+    print_msg
+    watcher_stop
+  fi
 fi
+
+$1
