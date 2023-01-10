@@ -31,7 +31,7 @@ nick_low=$( echo "$nick" | tr '[:upper:]' '[:lower:]' )
 command=$( cat "$out_file" | sed 's/.*-###-//g' | xargs )
 
 function print_msg {
-  /usr/bin/screen -S wirebot -p0 -X stuff "$say"
+  /usr/bin/screen -S wirebot -p0 -X stuff "$say"^M
 }
 
 function rnd_answer {
