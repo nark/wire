@@ -1,6 +1,6 @@
 # Process this file with autoconf to produce a configure script
-AC_INIT([wire], [2.0], [dev@read-write.fr])
-AC_PREREQ([2.57])
+AC_INIT([wirebot],[2.0],[dev@read-write.fr])
+AC_PREREQ([2.69])
 AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADER([config.h])
 
@@ -35,7 +35,7 @@ AC_PROG_MAKE_SET
 
 # Check for warnings
 AC_MSG_CHECKING([for warning flags])
-AC_ARG_ENABLE([warnings], AC_HELP_STRING([--enable-warnings], [enable warnings]))
+AC_ARG_ENABLE([warnings], AS_HELP_STRING([--enable-warnings],[enable warnings]))
 
 if test -n "$enable_warnings"; then
 	WI_INCLUDE_WARNING_FLAG([-W])
@@ -128,7 +128,7 @@ AC_ARG_WITH([libwired], , [
 ])
 
 if test "$wr_libwired"; then
-	ac_configure_args="$ac_configure_args --enable-p7 --enable-termcap --enable-iconv --enable-libxml2 --with-rundir=$wr_libwired_rundir --with-objdir=$wr_libwired_objdir"
+	ac_configure_args="$ac_configure_args --enable-p7 --enable-pthreads --enable-termcap --enable-iconv --enable-libxml2 --with-rundir=$wr_libwired_rundir --with-objdir=$wr_libwired_objdir"
 	AC_CONFIG_SUBDIRS([libwired])
 fi
 
@@ -142,11 +142,11 @@ A=$(eval echo ${bindir});	A=$(eval echo ${A})
 B=$(eval echo ${mandir});	B=$(eval echo ${B})
 
 echo ""
-echo "wire has been configured with the following options:"
+echo "wirebot has been configured with the following options:"
 
 echo ""
-echo "              Binary: ${A}/wire"
-echo "         Manual page: ${B}/man1/wire.1"
+echo "              Binary: ${A}/wirebot"
+echo "         Manual page: ${B}/man1/wirebot.1"
 
 echo ""
 echo "                Host: ${host}"
