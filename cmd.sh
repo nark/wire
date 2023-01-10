@@ -9,7 +9,7 @@
 ####################################################
 user_join=1
 user_leave=1
-wordpolice=1
+wordfilter=1
 greeting=1
 ####################################################
 
@@ -75,6 +75,39 @@ function watcher_stop {
   fi
 }
 
+function user_join_on {
+  sed -i '0,/.*user_join=.*/ s/.*user_join=.*/user_join=1/g' cmd.sh
+}
+
+function user_join_off {
+  sed -i '0,/.*user_join=.*/ s/.*user_join=.*/user_join=0/g' cmd.sh
+}
+
+function user_leave_on {
+  sed -i '0,/.*user_leave=.*/ s/.*user_leave=.*/user_leave=1/g' cmd.sh
+}
+
+function user_leave_off {
+  sed -i '0,/.*user_leave=.*/ s/.*user_leave=.*/user_leave=0/g' cmd.sh
+}
+
+function wordfilter_on {
+  sed -i '0,/.*wordfilter=.*/ s/.*wordfilter=.*/wordfilter=1/g' cmd.sh
+}
+
+function wordfilter_off {
+  sed -i '0,/.*wordfilter=.*/ s/.*wordfilter=.*/wordfilter=0/g' cmd.sh
+}
+
+function greeting_on {
+  sed -i '0,/.*greeting=.*/ s/.*greeting=.*/greeting=1/g' cmd.sh
+}
+
+function greeting_off {
+  sed -i '0,/.*greeting=.*/ s/.*greeting=.*/greeting=0/g' cmd.sh
+}
+
+
 function kill_screen {
   if [ -f watcher.pid ]; then
     rm watcher.pid
@@ -119,12 +152,12 @@ if [ $user_leave = 1 ]; then
   fi
 fi
 
-#### Wordpolice (wordpolice)####
+#### wordfilter (wordfilter)####
 if [[ "$command" == *"Hey, why did you"* ]]; then
   exit
 fi
 
-if [ $wordpolice = 1 ]; then
+if [ $wordfilter = 1 ]; then
   if [ "$command" = "shit" ] || [[ "$command" = *"fuck"* ]] || [ "$command" = "asshole" ] || [ "$command" = "ass" ] || [ "$command" = "dick" ]; then
     answ[0]="$nick, don't be rude please... :thumbsdown:"
     answ[1]="Very impolite! :angry:"
