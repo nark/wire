@@ -1,159 +1,123 @@
-# Process this file with autoconf to produce a configure script
-AC_INIT([wire], [2.0], [dev@read-write.fr])
-AC_PREREQ([2.57])
-AC_CONFIG_SRCDIR([config.h.in])
-AC_CONFIG_HEADER([config.h])
+/* config.h.  Generated from config.h.in by configure.  */
+/* config.h.in.  Generated from configure.ac by autoheader.  */
 
-# Include shared macros
-m4_include([libwired/config.m4])
+/* Define to 1 if you have the <Carbon/Carbon.h> header file. */
+#define HAVE_CARBON_CARBON_H 1
 
-# Get host
-AC_CANONICAL_HOST
+/* Define to 1 if you have the <CommonCrypto/CommonCryptor.h> header file. */
+#define HAVE_COMMONCRYPTO_COMMONCRYPTOR_H 1
 
-# Get Subversion revision
-WI_CHECK_SVN_REVISION
+/* Define to 1 if you have the <CommonCrypto/CommonDigest.h> header file. */
+#define HAVE_COMMONCRYPTO_COMMONDIGEST_H 1
 
-# These are used in the source code
-AC_DEFINE([WR_VERSION], ["AC_PACKAGE_VERSION"], [Application version])
-AC_DEFINE([WR_PROTOCOL_VERSION], ["1.1"], [Protocol version])
-AC_DEFINE([WR_BUGREPORT], ["AC_PACKAGE_BUGREPORT"], [Maintainer's email address])
+/* Define to 1 if you have the <CoreServices/CoreServices.h> header file. */
+#define HAVE_CORESERVICES_CORESERVICES_H 1
 
-# These are used in the Makefile
-AC_SUBST([WR_VERSION], [AC_PACKAGE_VERSION])
+/* Define to 1 if you have the <curses.h> header file. */
+#define HAVE_CURSES_H 1
 
+/* Define to 1 if you have the declaration of
+   `rl_completion_display_matches_hook', and to 0 if you don't. */
+#define HAVE_DECL_RL_COMPLETION_DISPLAY_MATCHES_HOOK 1
 
-#######################################################################
-# Checks for compilers
+/* Define to 1 if you have the <iconv.h> header file. */
+#define HAVE_ICONV_H 1
 
-AC_PROG_CC
-AC_PROG_INSTALL
-AC_PROG_MAKE_SET
+/* Define to 1 if you have the <inttypes.h> header file. */
+#define HAVE_INTTYPES_H 1
 
+/* Define to 1 if you have the <libxml/parser.h> header file. */
+#define HAVE_LIBXML_PARSER_H 1
 
-#######################################################################
-# Checks for flags
+/* Define to 1 if you have the <openssl/sha.h> header file. */
+#define HAVE_OPENSSL_SHA_H 1
 
-# Check for warnings
-AC_MSG_CHECKING([for warning flags])
-AC_ARG_ENABLE([warnings], AC_HELP_STRING([--enable-warnings], [enable warnings]))
+/* Define to 1 if you have the <pthread.h> header file. */
+#define HAVE_PTHREAD_H 1
 
-if test -n "$enable_warnings"; then
-	WI_INCLUDE_WARNING_FLAG([-W])
-	WI_INCLUDE_WARNING_FLAG([-Wall])
-	WI_INCLUDE_WARNING_FLAG([-Wno-unknown-pragmas])
-	WI_INCLUDE_WARNING_FLAG([-Wno-unused-parameter])
-	WI_INCLUDE_WARNING_FLAG([-Wsign-compare])
-	WI_INCLUDE_WARNING_FLAG([-Wstrict-prototypes])
-	WI_INCLUDE_WARNING_FLAG([-Wmissing-prototypes])
-	WI_INCLUDE_WARNING_FLAG([-Wmissing-declarations])
-	WI_INCLUDE_WARNING_FLAG([-Wredundant-decls])
+/* Define to 1 if you have the <readline/readline.h> header file. */
+#define HAVE_READLINE_READLINE_H 1
 
-	AC_MSG_RESULT([$WARNFLAGS])
-else
-	AC_MSG_RESULT([none])
-fi
+/* Define to 1 if you have the `rl_completion_matches' function, and to 0
+   otherwise. */
+#define HAVE_RL_COMPLETION_MATCHES 1
 
+/* Define to 1 if you have the <stdint.h> header file. */
+#define HAVE_STDINT_H 1
 
-# Check for object directory name
-AC_ARG_WITH([objdir])
+/* Define to 1 if you have the <stdio.h> header file. */
+#define HAVE_STDIO_H 1
 
-if test -n "$with_objdir"; then
-	AC_SUBST([objdir], ["$with_objdir"])
-	wr_libwired_objdir="$with_objdir"
-else
-	AC_SUBST([objdir], ["obj"])
-	wr_libwired_objdir="../obj"
-fi
+/* Define to 1 if you have the <stdlib.h> header file. */
+#define HAVE_STDLIB_H 1
 
+/* Define to 1 if you have the <strings.h> header file. */
+#define HAVE_STRINGS_H 1
 
-# Check for run directory name
-AC_ARG_WITH([rundir])
+/* Define to 1 if you have the <string.h> header file. */
+#define HAVE_STRING_H 1
 
-if test -n "$with_rundir"; then
-	AC_SUBST([rundir], ["$with_rundir"])
-	wr_libwired_rundir="$with_rundir/libwired"
-else
-	AC_SUBST([rundir], ["run"])
-	wr_libwired_rundir="../run/libwired"
-fi
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#define HAVE_SYS_STAT_H 1
 
+/* Define to 1 if you have the <sys/types.h> header file. */
+#define HAVE_SYS_TYPES_H 1
 
-# Check for maintainer mode
-AC_ARG_ENABLE([maintainer_mode])
+/* Define to 1 if you have the <termcap.h> header file. */
+#define HAVE_TERMCAP_H 1
 
-if test -n "$enable_maintainer_mode"; then
-	AC_SUBST([WR_MAINTAINER], [1])
-else
-	AC_SUBST([WR_MAINTAINER], [0])
-fi
+/* Define to 1 if you have the <termios.h> header file. */
+#define HAVE_TERMIOS_H 1
 
+/* Define to 1 if you have the <term.h> header file. */
+#define HAVE_TERM_H 1
 
-#######################################################################
-# Checks for additional paths
+/* Define to 1 if you have the <unistd.h> header file. */
+#define HAVE_UNISTD_H 1
 
-WI_INCLUDE_EXTRA_INCLUDE_PATHS
-WI_INCLUDE_EXTRA_LIBRARY_PATHS
+/* Define to 1 if you have the <zlib.h> header file. */
+#define HAVE_ZLIB_H 1
 
+/* Define to the address where bug reports for this package should be sent. */
+#define PACKAGE_BUGREPORT "dev@read-write.fr"
 
-#######################################################################
-# Checks for libraries
+/* Define to the full name of this package. */
+#define PACKAGE_NAME "wirebot"
 
-WI_CHECK_LIBWIRED
-WI_INCLUDE_PTHREADS
-WI_INCLUDE_LIBWIRED_LIBRARIES
-WI_INCLUDE_P7_LIBRARIES
-WI_INCLUDE_ICONV_LIBRARY
-WI_INCLUDE_TERMCAP_LIBRARY
-WI_INCLUDE_READLINE_LIBRARY
-WI_INCLUDE_NCURSES_LIBRARY
+/* Define to the full name and version of this package. */
+#define PACKAGE_STRING "wirebot 2.0"
 
-#######################################################################
-# Checks for typedefs, structures, and compiler characteristics
+/* Define to the one symbol short name of this package. */
+#define PACKAGE_TARNAME "wirebot"
 
-AC_SYS_LARGEFILE
+/* Define to the home page for this package. */
+#define PACKAGE_URL ""
 
+/* Define to the version of this package. */
+#define PACKAGE_VERSION "2.0"
 
-#######################################################################
-# Output
+/* Define to 1 if all of the C90 standard headers exist (not just the ones
+   required in a freestanding environment). This macro is provided for
+   backward compatibility; new code need not use it. */
+#define STDC_HEADERS 1
 
-AC_CONFIG_FILES([Makefile])
+/* Subversion revision */
+#define WI_REVISION "0"
 
-# Configure libwired
-AC_ARG_WITH([libwired], , [
-	if test "$with_libwired" = "yes"; then
-		wr_libwired=1
-	fi
-], [
-	wr_libwired=1
-])
+/* Maintainer's email address */
+#define WR_BUGREPORT "dev@read-write.fr"
 
-if test "$wr_libwired"; then
-	ac_configure_args="$ac_configure_args --enable-p7 --enable-termcap --enable-iconv --enable-libxml2 --with-rundir=$wr_libwired_rundir --with-objdir=$wr_libwired_objdir"
-	AC_CONFIG_SUBDIRS([libwired])
-fi
+/* Protocol version */
+#define WR_PROTOCOL_VERSION "1.1"
 
-AC_OUTPUT
+/* Application version */
+#define WR_VERSION "2.0"
 
+/* Number of bits in a file offset, on hosts where this is settable. */
+/* #undef _FILE_OFFSET_BITS */
 
-#######################################################################
-# Print summary
+/* Define for large files, on AIX-style hosts. */
+/* #undef _LARGE_FILES */
 
-A=$(eval echo ${bindir});	A=$(eval echo ${A})
-B=$(eval echo ${mandir});	B=$(eval echo ${B})
-
-echo ""
-echo "wire has been configured with the following options:"
-
-echo ""
-echo "              Binary: ${A}/wire"
-echo "         Manual page: ${B}/man1/wire.1"
-
-echo ""
-echo "                Host: ${host}"
-echo "            Compiler: ${CC}"
-echo "      Compiler flags: ${CFLAGS}"
-echo "  Preprocessor flags: ${CPPFLAGS}"
-echo "        Linker flags: ${LDFLAGS}"
-echo "           Libraries: ${LIBS}"
-
-echo ""
+/* Define on Solaris to get sigwait() to work using pthreads semantics. */
+/* #undef _POSIX_PTHREAD_SEMANTICS */
