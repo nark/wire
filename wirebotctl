@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# The path to your config file
-CONFIGFILE="/opt/wired/etc/wired.conf"
-
 # The path to your pid file
 PIDFILE="/opt/wired/wired.pid"
 
