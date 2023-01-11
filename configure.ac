@@ -145,7 +145,7 @@ echo ""
 echo "wirebot has been configured with the following options:"
 
 echo ""
-echo "              Binary: ${A}/wirebot"
+echo "              Binary: ${A}/wirebot/wirebot"
 echo "         Manual page: ${B}/man1/wirebot.1"
 
 echo ""
