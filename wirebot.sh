@@ -17,7 +17,7 @@ greeting=1
 ####################################################
 ######### Watch a directory for new files ##########
 ####################################################
-#watcher=1
+watcher=0
 watchdir="/PATH/TO/FOLDER"
 ####################################################
 
@@ -49,27 +49,39 @@ function watcher_def {
 
 function watcher_start {
   check=$( ps ax | grep "inotifywait" | grep "$watchdir" )
-  if [ "$check" != "" ]; then
-    say="Watcher already running!"
-    print_msg
-  else
-    /usr/bin/screen -S wirebot -x -X screen -t watcher bash -c "bash "$SELF"/wirebot.sh watcher_def; exec bash"
-    say="Watcher started."
-    print_msg
+  if [ "$check" = "" ]; then
+    if ! [ -d "$watchdir" ]; then
+      echo "The watch path \"$watchdir\" is not valid/available. Please change it in wirebot.sh first and try again (./wiredctl watch)."
+      exit
+    fi
+    if /usr/bin/screen -S wirebot -x -X screen -t watcher bash -c "bash "$SELF"/wirebot.sh watcher_def; exec bash"; then
+      sleep 1
+      ps ax | grep -v grep | grep "inotifywait*.* $watchdir" | sed 's/\ .*//g' | xargs > watcher.pid
+      echo "Watcher started."
+    else
+      echo "Error on starting watcher. Make sure to run wirebot first!"
+    fi
   fi
-
-  sleep 1
-  ps ax | grep -v grep | grep "inotifywait*.* $watchdir" | sed 's/\ .*//g' | xargs > watcher.pid
 }
 
 function watcher_stop {
   if ! [ -f watcher.pid ]; then
-    say="Watcher was not running!"
-    print_msg
+    echo "Watcher was not running!"
   else
     watcher_pid=$( cat watcher.pid )
     kill -KILL "$watcher_pid"
     rm watcher.pid
+    echo "Watcher stopped."
+  fi
+}
+
+function watcher_init {
+  if [ "$watcher" = 1 ]; then
+    if [ -d "$watchdir" ]; then
+      watcher_start
+    else
+      echo "The watch path \"$watchdir\" is not valid/available. Please change it in wirebot.sh first and try again (./wiredctl watch)."
+    fi
   fi
 }
 
@@ -129,7 +141,9 @@ elif [ ! -f cmd.stop ]; then
 fi
 
 if [[ "$command" == *"Using timestamp"* ]]; then
-  rm cmd.stop
+  if [ -f cmd.stop ]; then
+    rm cmd.stop
+  fi
 fi
 
 #### User join server (user_join) ####
@@ -205,15 +219,7 @@ if [[ "$nick_low" == *"luigi"* ]]; then
     print_msg
     touch cmd.stop
   fi
-  if [ "$command" = "!watcher_start" ]; then
-    watcher_start
-  fi
-  if [ "$command" = "!watcher_stop" ]; then
-    say="Watcher stopped"
-    print_msg
-    watcher_stop
-  fi
-  if [ "$command" = "!kill_screen" ]; then
+    if [ "$command" = "!kill_screen" ]; then
     say="Cya."
     print_msg
     kill_screen
