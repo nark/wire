@@ -2,7 +2,7 @@
 #
 #
 #### Put this file into your .wire home directory
-#### Make sure to make a "chmod +x cmd.sh" before.
+#### Make sure to make a "chmod +x wirebot.sh" before.
 
 ####################################################
 #### Switch desired function on or off (0 or 1).####
@@ -24,7 +24,7 @@ watchdir="/PATH/TO/FOLDER"
 SELF=$(SELF=$(dirname "$0") && bash -c "cd \"$SELF\" && pwd")
 cd "$SELF"
 
-out_file="cmd.txt"
+out_file="wirebot.txt"
 
 nick=$( cat "$out_file" | sed 's/-###.*//g' | xargs )
 nick_low=$( echo "$nick" | tr '[:upper:]' '[:lower:]' )
@@ -55,7 +55,7 @@ function watcher_start {
     say="Watcher already running!"
     print_msg
   else
-    /usr/bin/screen -S wirebot -x -X screen -t watcher bash -c "bash "$SELF"/cmd.sh watcher_def; exec bash"
+    /usr/bin/screen -S wirebot -x -X screen -t watcher bash -c "bash "$SELF"/wirebot.sh watcher_def; exec bash"
     say="Watcher started."
     print_msg
   fi
@@ -76,35 +76,35 @@ function watcher_stop {
 }
 
 function user_join_on {
-  sed -i '0,/.*user_join=.*/ s/.*user_join=.*/user_join=1/g' cmd.sh
+  sed -i '0,/.*user_join=.*/ s/.*user_join=.*/user_join=1/g' wirebot.sh
 }
 
 function user_join_off {
-  sed -i '0,/.*user_join=.*/ s/.*user_join=.*/user_join=0/g' cmd.sh
+  sed -i '0,/.*user_join=.*/ s/.*user_join=.*/user_join=0/g' wirebot.sh
 }
 
 function user_leave_on {
-  sed -i '0,/.*user_leave=.*/ s/.*user_leave=.*/user_leave=1/g' cmd.sh
+  sed -i '0,/.*user_leave=.*/ s/.*user_leave=.*/user_leave=1/g' wirebot.sh
 }
 
 function user_leave_off {
-  sed -i '0,/.*user_leave=.*/ s/.*user_leave=.*/user_leave=0/g' cmd.sh
+  sed -i '0,/.*user_leave=.*/ s/.*user_leave=.*/user_leave=0/g' wirebot.sh
 }
 
 function wordfilter_on {
-  sed -i '0,/.*wordfilter=.*/ s/.*wordfilter=.*/wordfilter=1/g' cmd.sh
+  sed -i '0,/.*wordfilter=.*/ s/.*wordfilter=.*/wordfilter=1/g' wirebot.sh
 }
 
 function wordfilter_off {
-  sed -i '0,/.*wordfilter=.*/ s/.*wordfilter=.*/wordfilter=0/g' cmd.sh
+  sed -i '0,/.*wordfilter=.*/ s/.*wordfilter=.*/wordfilter=0/g' wirebot.sh
 }
 
 function greeting_on {
-  sed -i '0,/.*greeting=.*/ s/.*greeting=.*/greeting=1/g' cmd.sh
+  sed -i '0,/.*greeting=.*/ s/.*greeting=.*/greeting=1/g' wirebot.sh
 }
 
 function greeting_off {
-  sed -i '0,/.*greeting=.*/ s/.*greeting=.*/greeting=0/g' cmd.sh
+  sed -i '0,/.*greeting=.*/ s/.*greeting=.*/greeting=0/g' wirebot.sh
 }
 
 
