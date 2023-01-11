@@ -54,6 +54,7 @@ case $CMD in
 		checkrunning
 
 		if screen -XS wirebot quit; then
+			rm "$HOME/.wirebot/wirebot.pid"
 			echo "$PROG: $CMD: wirebot stopped"
 		else
 			echo "$PROG: $CMD: wirebot could not be stopped"
@@ -77,6 +78,7 @@ case $CMD in
 
 		if [ $RUNNING -eq 1 ]; then
 			if screen -XS wirebot quit; then
+				rm "$HOME/.wirebot/wirebot.pid"
 				echo "$PROG: $CMD: wirebot stopped"
 			else
 				echo "$PROG: $CMD: wirebot could not be stopped"

@@ -51,7 +51,7 @@ function watcher_start {
   check=$( ps ax | grep "inotifywait" | grep "$watchdir" )
   if [ "$check" = "" ]; then
     if ! [ -d "$watchdir" ]; then
-      echo "The watch path \"$watchdir\" is not valid/available. Please change it in wirebot.sh first and try again (./wiredctl watch)."
+      echo -e "The watch path \"$watchdir\" is not valid/available.\nPlease change it in wirebot.sh first and try again (./wirebotctl watch)."
       exit
     fi
     if /usr/bin/screen -S wirebot -x -X screen -t watcher bash -c "bash "$SELF"/wirebot.sh watcher_def; exec bash"; then
@@ -59,14 +59,14 @@ function watcher_start {
       ps ax | grep -v grep | grep "inotifywait*.* $watchdir" | sed 's/\ .*//g' | xargs > watcher.pid
       echo "Watcher started."
     else
-      echo "Error on starting watcher. Make sure to run wirebot first!"
+      echo "Error on starting watcher. Make sure to run wirebot first! (./wirebotctl start)"
     fi
   fi
 }
 
 function watcher_stop {
   if ! [ -f watcher.pid ]; then
-    echo "Watcher was not running!"
+    echo "Watcher is not running!"
   else
     watcher_pid=$( cat watcher.pid )
     kill -KILL "$watcher_pid"
@@ -80,7 +80,7 @@ function watcher_init {
     if [ -d "$watchdir" ]; then
       watcher_start
     else
-      echo "The watch path \"$watchdir\" is not valid/available. Please change it in wirebot.sh first and try again (./wiredctl watch)."
+      echo -e "The watch path \"$watchdir\" is not valid/available.\nPlease change it in wirebot.sh first and try again (./wirebotctl watch)."
     fi
   fi
 }
