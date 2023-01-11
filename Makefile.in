@@ -82,15 +82,15 @@ install: all install-man install-wirebot
 install-only: install-man install-wirebot
 
 install-wirebot:
-	$(INSTALL) -m 755 -d $(bindir)
+	$(INSTALL) -m 755 -d $(bindir)/wirebot
 	$(INSTALL) -m 755 -d $(docdir)/wirebot
-	$(INSTALL) -m 755 run/wirebot $(bindir)
-	$(INSTALL) -m 755 wirebot.xml $(docdir)/wirebot/wirebot.xml
+	$(INSTALL) -m 755 run/wirebot $(bindir)/wirebot
+	$(INSTALL) -m 755 wirebotctl $(bindir)/wirebot
 
 	@echo ""
 	@echo "Installation complete!"
 	@echo ""
-	@echo "wirebot has been installed as $(bindir)/wirebot."
+	@echo "wirebot has been installed as $(bindir)/wirebot/wirebot"
 	@echo ""
 	@echo "Manual pages have been installed into $(mandir)."
 	@echo ""

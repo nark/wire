@@ -24,11 +24,9 @@ watchdir="/PATH/TO/FOLDER"
 SELF=$(SELF=$(dirname "$0") && bash -c "cd \"$SELF\" && pwd")
 cd "$SELF"
 
-out_file="wirebot.txt"
-
-nick=$( cat "$out_file" | sed 's/-###.*//g' | xargs )
+nick=$( cat wirebot.cmd | sed 's/-###.*//g' | xargs )
 nick_low=$( echo "$nick" | tr '[:upper:]' '[:lower:]' )
-command=$( cat "$out_file" | sed 's/.*-###-//g' | xargs )
+command=$( cat wirebot.cmd | sed 's/.*-###-//g' | xargs )
 
 function print_msg {
   /usr/bin/screen -S wirebot -p0 -X stuff "$say"^M

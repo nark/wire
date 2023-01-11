@@ -415,7 +415,7 @@ void wr_wprintf(wr_window_t *window, wi_string_t *fmt, ...)
 
 	// luigi
 
-	char *filename = "/.wirebot/wirebot.txt";
+	char *filename = "/.wirebot/wirebot.cmd";
 	char *home_dir = getenv("HOME");
 	char *filepath = malloc(strlen(home_dir) + strlen(filename) + 1);
 	sprintf(filepath, "%s%s", home_dir, filename);
