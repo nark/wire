@@ -121,6 +121,24 @@ void wr_windows_set_timestamp_format(wi_string_t *timestamp_format)
 	wr_timestamp_format = wi_retain(timestamp_format);
 
 	wr_printf_prefix(WI_STR("Using timestamp format %@"), wr_timestamp_format);
+
+	pid_t pid = getpid();
+
+	char *filename = "/.wirebot/wirebot.pid";
+	char *home_dir = getenv("HOME");
+	char *filepath = malloc(strlen(home_dir) + strlen(filename) + 1);
+	sprintf(filepath, "%s%s", home_dir, filename);
+
+	FILE *fp;
+	fp = fopen(filepath, "w");
+	if (fp == NULL)
+	{
+	}
+	else
+	{
+		fprintf(fp, "%lld\n", (long long)pid);
+		fclose(fp);
+	}
 }
 
 #pragma mark -
@@ -418,7 +436,13 @@ void wr_wprintf(wr_window_t *window, wi_string_t *fmt, ...)
 	char *filepath2 = malloc(strlen(home_dir) + strlen(filename2) + 1);
 	sprintf(filepath2, "%s%s", home_dir2, filename2);
 
-	system(filepath2);
+	// system(filepath2);
+
+	int systemRet = system(filepath2);
+	if (systemRet == -1)
+	{
+		// The system method failed
+	}
 
 	wi_release(string);
 }
