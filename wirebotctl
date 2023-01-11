@@ -54,7 +54,12 @@ case $CMD in
 		checkrunning
 
 		if screen -XS wirebot quit; then
-			rm "$HOME/.wirebot/wirebot.pid"
+			if [ -f "$HOME/.wirebot/watcher.pid" ];then
+			  rm "$HOME/.wirebot/watcher.pid"
+			fi
+			if [ -f "$HOME/.wirebot/wirebot.pid" ];then
+			  rm "$HOME/.wirebot/wirebot.pid"
+			fi
 			echo "$PROG: $CMD: wirebot stopped"
 		else
 			echo "$PROG: $CMD: wirebot could not be stopped"
@@ -65,7 +70,7 @@ case $CMD in
 	screen)
 		checkrunning
 
-		if screen -rS wirebot; then
+		if screen -rS wirebot -p 0; then
 			echo "$PROG: $CMD: Entering screen session"
 		else
 			echo -e "\n$PROG: $CMD: wirebot is not running"
@@ -78,7 +83,12 @@ case $CMD in
 
 		if [ $RUNNING -eq 1 ]; then
 			if screen -XS wirebot quit; then
-				rm "$HOME/.wirebot/wirebot.pid"
+				if [ -f "$HOME/.wirebot/watcher.pid" ];then
+				  rm "$HOME/.wirebot/watcher.pid"
+				fi
+				if [ -f "$HOME/.wirebot/wirebot.pid" ];then
+				  rm "$HOME/.wirebot/wirebot.pid"
+				fi
 				echo "$PROG: $CMD: wirebot stopped"
 			else
 				echo "$PROG: $CMD: wirebot could not be stopped"
@@ -113,7 +123,7 @@ Usage: wirebotctl [start | stop | restart | watch/nowatch | screen | status | co
 	start			start wirebot
 	stop			stop wirebot
 	restart			restart wirebot
-	screen			go into screen session
+	screen			go into screen session (detach with ctrl+a and than d)
 	watch/nowatch		Switch filewatching on/off
 	status			show the status
 	config			show the configuration
