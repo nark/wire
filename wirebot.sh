@@ -183,19 +183,19 @@ fi
 
 #### Common (common) ####
 if [ $common = 1 ]; then
-  if [[ "$command" = *"wired"* ]]; then
-    answ[0]="Uh? What's "Wired" $nick? :grimacing: 👨🏽‍😖"
+  if [[ "$command" = "wired" ]]; then
+    answ[0]="Uh? What's "Wired" $nick? ‍😖"
     answ[1]="Ooooh, Wired! The magazine ? 😟"
     rnd_answer
   fi
-  if [[ "$command" = *"shut"* ]] && [[ "$command" = *"bot"* ]]; then
+  if [[ "$command" = "shut up bot" ]] ; then
     answ[0]="Moooooo 😟"
     answ[1]="Oh no 😟"
     answ[2]="Nooooo 😥"
     rnd_answer
     exit
   fi
-  if [[ "$command" = *"bot"* ]]; then
+  if [[ "$command" = "bot" ]]; then
     answ[0]="Do you talked to me $nick?"
     answ[1]="Bot? What's a bot?"
     answ[2]="Bots are silly programs. 🙈"
@@ -204,7 +204,6 @@ if [ $common = 1 ]; then
     answ[5]="runs!"
     rnd_answer
   fi
-
 fi
 
 #### Greetings (greeting) ####
