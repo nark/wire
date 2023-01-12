@@ -8,7 +8,7 @@ This is the former CLI client "wire" (https://github.com/nark/wire) which has no
 
 ## Install wirebot (UNIX-like systems)
 
-This tutorial explains how to install and run Wire-CLI-Bot on an UNIX-like operating system. (Linux, BSD, OSX, etc)
+This tutorial explains how to install and run wirebot on an UNIX-like operating system.
 
 #### Howto install on:
 
@@ -54,35 +54,13 @@ If you installed OpenSSL in a non-standard path, use the following command examp
 
 Use `./configure --help` in order to display more options.
 
-
-
-##### 4. Compile source code:
-
-On GNU-like unices, type:
-
-	make
-
-Or, on BSD-like unices, type: 
-
-	gmake
-
-##### 5. Install on your system:
-
-On GNU-like unices, type:
-
-	make install
-
-Or, on BSD-like unices, type: 
-
-	gmake install
-
 This will require write permissions to `/usr/local/bin`, or whatever directory you set as the prefix above. Depending of your OS setup, you may require to use `sudo`.
 
-##### 6. Running Wire-CLI-Bot
+##### 6. Running wirebot
 
 It´s designed to run it in a screen-Session.
 
-To start an installed Wire-Cli-Bot, run:
+To start an installed wirebot, run:
 
 	screen -Sdm wirebot /usr/local/bin/wirebot
 
@@ -112,17 +90,13 @@ Default path for the configuration file is:
 	
 Example configuration:
 
+	charset UTF-8
 	open -l USER -p PASSWORT -P PORT URL
 	nick YOUR_NAME
 	status YOUR_STATUS
-	icon YOUR_ICON.png (absolute path)
+	icon /home/YOUR_USER/.wirebot/PICTURE.png
 	
-You can use bookmarks too. Simply name the file e.g. "my_server" and locate it in the .wire directory. Call it this way:
-
-	/usr/local/bin/wirebot my_server
-
-
-If you want to know the available commands of the client type
+If you want to know the available commands of the wirebot type
 
 	/help
 	
@@ -132,9 +106,19 @@ If you got/send a msg you can cycle through the windows with:
 
 	ctrl+n / ctrl+p
 
-### Get More
+#### 7. Control wirebot:
 
-If you are interested in the Wired project, check the Website at [https://wired.read-write.fr/](https://wired.read-write.fr)
+	Usage: wirebotctl [start | stop | restart | watch/nowatch | screen | status | config]
+
+	start			start wirebot
+	stop			stop wirebot
+	restart			restart wirebot
+	screen			go into screen session (detach with ctrl+a and than d)
+	watch/nowatch		Switch filewatching on/off
+	status			show the status
+	config			show the configuration
+
+If you want to extent the wirebot with functions you can edit wirebot.sh in your .wirebot Directory.
 
 ### Troubleshootings
 
