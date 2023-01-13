@@ -139,7 +139,7 @@ void wr_messages_handle_message(wi_p7_message_t *message) {
 	handler		= wi_dictionary_data_for_key(wr_message_handlers, name);
 	
 	if(!handler) {
-		wr_printf_prefix(WI_STR("No handler for message \"%@\""), name);
+		//wr_printf_prefix(WI_STR("No handler for message \"%@\""), name);
 		
 		return;
 	}
@@ -392,7 +392,7 @@ static void wr_message_chat_user_list_done(wi_p7_message_t *message) {
 	chat = wr_chats_chat_with_cid(cid);
 
 	wr_draw_divider();
-	wr_print_users(wr_windows_window_with_chat(chat));
+	//wr_print_users(wr_windows_window_with_chat(chat));
 }
 
 
@@ -483,10 +483,10 @@ static void wr_message_chat_user_status(wi_p7_message_t *message) {
 		status		= wi_p7_message_string_for_name(message, WI_STR("wired.user.status"));
 		
 		if(!wi_is_equal(wr_user_nick(user), nick)) {
-			wr_wprintf_prefix(wr_console_window, WI_STR("%@ is now known as %@"),
-				wr_user_nick(user), nick);
+			//wr_wprintf_prefix(wr_console_window, WI_STR("%@ is now known as %@"),
+			//	wr_user_nick(user), nick);
 
-			wr_user_set_nick(user, nick);
+			//wr_user_set_nick(user, nick);
 		}
 
 		wr_user_set_idle(user, idle);

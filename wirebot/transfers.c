@@ -175,7 +175,7 @@ void wr_transfers_set_download_path(wi_string_t *download_path) {
 	wi_release(wr_download_path);
 	wr_download_path = wi_retain(download_path);
 	
-	wr_printf_prefix(WI_STR("Using download path %@"), download_path);
+	//wr_printf_prefix(WI_STR("Using download path %@"), download_path);
 }
 
 

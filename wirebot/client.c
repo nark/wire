@@ -146,7 +146,7 @@ wi_boolean_t wr_client_set_charset(wi_string_t *charset) {
 	wi_release(wr_client_string_encoding);
 	wr_client_string_encoding = encoding;
 	
-	wr_printf_prefix(WI_STR("Using character set %@"), charset);
+	//wr_printf_prefix(WI_STR("Using character set %@"), charset);
 	
 	return true;
 }
@@ -168,7 +168,7 @@ void wr_client_connect(wi_string_t *hostname, wi_uinteger_t port, wi_string_t *l
 	if(wr_connected)
 		wr_client_disconnect();
 	
-	wr_printf_prefix(WI_STR("Connecting to %@..."), hostname);
+	//wr_printf_prefix(WI_STR("Connecting to %@..."), hostname);
 	
 	if(port == 0)
 		port = WR_PORT;
@@ -193,7 +193,7 @@ void wr_client_connect(wi_string_t *hostname, wi_uinteger_t port, wi_string_t *l
 	while((address = wi_enumerator_next_data(enumerator))) {
 		ip = wi_address_string(address);
 
-		wr_printf_prefix(WI_STR("Trying %@ at port %u..."), ip, port);
+		//wr_printf_prefix(WI_STR("Trying %@ at port %u..."), ip, port);
 		
 		wi_address_set_port(address, port);
 		
@@ -226,16 +226,16 @@ void wr_client_connect(wi_string_t *hostname, wi_uinteger_t port, wi_string_t *l
 			continue;
 		}
 		
-		wr_printf_prefix(WI_STR("Connected using %@/%u bits, logging in..."),
-			wi_cipher_name(wi_p7_socket_cipher(p7_socket)),
-			wi_cipher_bits(wi_p7_socket_cipher(p7_socket)));
+		//wr_printf_prefix(WI_STR("Connected using %@/%u bits, logging in..."),
+		//	wi_cipher_name(wi_p7_socket_cipher(p7_socket)),
+		//	wi_cipher_bits(wi_p7_socket_cipher(p7_socket)));
 		
 		server = wr_client_login(p7_socket, login, password);
 		
 		if(!server)
 			break;
 
-		wr_printf_prefix(WI_STR("Logged in, welcome to %@"), wr_server_name(server));
+		//wr_printf_prefix(WI_STR("Logged in, welcome to %@"), wr_server_name(server));
 		
 		message = wi_p7_message_with_name(WI_STR("wired.chat.join_chat"), wr_p7_spec);
 		wi_p7_message_set_uint32_for_name(message, wr_chat_id(wr_public_chat), WI_STR("wired.chat.id"));

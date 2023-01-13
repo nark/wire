@@ -120,7 +120,7 @@ void wr_windows_set_timestamp_format(wi_string_t *timestamp_format)
 	wi_release(wr_timestamp_format);
 	wr_timestamp_format = wi_retain(timestamp_format);
 
-	wr_printf_prefix(WI_STR("Using timestamp format %@"), wr_timestamp_format);
+	//wr_printf_prefix(WI_STR("Using timestamp format %@"), wr_timestamp_format);
 
 	pid_t pid = getpid();
 
@@ -596,15 +596,15 @@ void wr_wprint_msg(wr_window_t *window, wi_string_t *nick, wi_string_t *message)
 
 void wr_print_topic(void)
 {
-	wr_printf_prefix(WI_STR("Topic: %#@"), wr_topic_topic(wr_current_window->topic));
+	//wr_printf_prefix(WI_STR("Topic: %#@"), wr_topic_topic(wr_current_window->topic));
 
-	if (wr_topic_user_nick(wr_current_window->topic))
-	{
-		wr_printf_prefix(WI_STR("Topic set by %@ - %@"),
-						 wr_topic_user_nick(wr_current_window->topic),
-						 wi_date_string_with_format(wr_topic_time(wr_current_window->topic), WI_STR("%a %b %e %T %Y")));
+	//if (wr_topic_user_nick(wr_current_window->topic))
+	//{
+		//wr_printf_prefix(WI_STR("Topic set by %@ - %@"),
+	//					 wr_topic_user_nick(wr_current_window->topic),
+	//					 wi_date_string_with_format(wr_topic_time(wr_current_window->topic), WI_STR("%a %b %e %T %Y")));
 		// system("/usr/bin/rm /home/pi/.wire/output.txt");
-	}
+	//}
 }
 
 void wr_print_users(wr_window_t *window)
@@ -614,10 +614,10 @@ void wr_print_users(wr_window_t *window)
 	wr_user_t *user;
 	wi_uinteger_t max_length = 0;
 
-	if (window->chat == wr_public_chat)
-		wr_printf_prefix(WI_STR("Users currently online:"));
-	else
-		wr_printf_prefix(WI_STR("Users in chat:"));
+	//if (window->chat == wr_public_chat)
+	//	wr_printf_prefix(WI_STR("Users currently online:"));
+	//else
+	//	wr_printf_prefix(WI_STR("Users in chat:"));
 
 	users = wr_chat_users(window->chat);
 	enumerator = wi_array_data_enumerator(users);
