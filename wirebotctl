@@ -97,6 +97,7 @@ case $CMD in
 		fi
 
 		if screen -Sdm wirebot $WIREBOT/wirebot; then
+			/bin/bash "$HOME/.wirebot/wirebot.sh" watcher_init
 			echo "$PROG: $CMD: wirebot started"
 		else
 			echo "$PROG: $CMD: wirebot could not be started"

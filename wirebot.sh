@@ -42,7 +42,7 @@ function rnd_answer {
 function watcher_def {
   inotifywait -m -e create,moved_to "$watchdir" | while read DIRECTORY EVENT FILE; do
     say=$( echo "$FILE" |sed -e 's/.*CREATE\ //g' -e 's/.*MOVED_TO\ //g' -e 's/.*ISDIR\ //g' )
-    say=$( echo "New Mac Stuff has arrived: $say" )
+    say=$( echo ":floppy_disk: New Stuff has arrived: $say" )
     print_msg
   done
 }
@@ -126,23 +126,25 @@ function kill_screen {
 }
 
 
-if [ -f cmd.stop ]; then
+if [ -f wirebot.stop ]; then
   if [ "$command" = "!start" ]; then
-        rm cmd.stop
+        rm wirebot.stop
   elif [ "$command" = "!stop" ]; then
     say="/afk"
     print_msg
     exit
+  else
+    exit
   fi
-elif [ ! -f cmd.stop ]; then
+elif [ ! -f wirebot.stop ]; then
   if [ "$command" = "!start" ]; then
         exit
   fi
 fi
 
 if [[ "$command" == *"Using timestamp"* ]]; then
-  if [ -f cmd.stop ]; then
-    rm cmd.stop
+  if [ -f wirebot.stop ]; then
+    rm wirebot.stop
   fi
 fi
 
@@ -150,7 +152,7 @@ fi
 if [ $user_join = 1 ]; then
   if [[ "$command" == *" has joined" ]]; then
     nick=$( cat "$out_file" | sed -e 's/.*\]\ //g' -e 's/\ has\ joined//g' -e 's/;0m//g' | xargs )
-    say="Hi $nick :grinning:"
+    say="Hi $nick 😁"
     print_msg
   fi
 fi
@@ -159,7 +161,7 @@ fi
 if [ $user_leave = 1 ]; then
   if [[ "$command" == *" has left" ]]; then
     nick=$( cat "$out_file" | sed -e 's/.*\]\ //g' -e 's/\ has\ left//g' -e 's/;0m//g' | xargs )
-    say="Bye $nick :worried:".
+    say="Bye $nick 😔"
     print_msg
   fi
 fi
@@ -171,22 +173,47 @@ fi
 
 if [ $wordfilter = 1 ]; then
   if [ "$command" = "shit" ] || [[ "$command" = *"fuck"* ]] || [ "$command" = "asshole" ] || [ "$command" = "ass" ] || [ "$command" = "dick" ]; then
-    answ[0]="$nick, don't be rude please... :thumbsdown:"
-    answ[1]="Very impolite! :angry:"
-    answ[2]="Hey, why did you say \"$command\" ? :anguished: :pensive:"
+    answ[0]="$nick, don't be rude please... 👎"
+    answ[1]="Very impolite! 😠"
+    answ[2]="Hey, why did you say \"$command\" ? 😧 😔"
     rnd_answer
     exit
+  fi
+fi
+
+#### Common (common) ####
+if [ $common = 1 ]; then
+  if [[ "$command" = "wired" ]]; then
+    answ[0]="Uh? What's "Wired" $nick? ‍😖"
+    answ[1]="Ooooh, Wired! The magazine ? 😟"
+    rnd_answer
+  fi
+  if [[ "$command" = "shut up bot" ]] ; then
+    answ[0]="Moooooo 😟"
+    answ[1]="Oh no 😟"
+    answ[2]="Nooooo 😥"
+    rnd_answer
+    exit
+  fi
+  if [[ "$command" = "bot" ]]; then
+    answ[0]="Do you talked to me $nick?"
+    answ[1]="Bot? What's a bot?"
+    answ[2]="Bots are silly programs. 🙈"
+    answ[3]="…"
+    answ[4]="hides!"
+    answ[5]="runs!"
+    rnd_answer
   fi
 fi
 
 #### Greetings (greeting) ####
 if [ $greeting = 1 ]; then
   if [ "$command" = "hello" ] || [ "$command" = "hey" ] || [ "$command" = "hi" ]; then
-    answ[0]="Hey $nick. :-)"
-    answ[1]="Hello $nick. :wave:"
-    answ[2]="Hi $nick. :-)"
-    answ[3]="Yo $nick. :-)"
-    answ[4]="Yo man ... whazzup? :v:"
+    answ[0]="Hey $nick. 😁"
+    answ[1]="Hello $nick. 👋"
+    answ[2]="Hi $nick. 😃"
+    answ[3]="Yo $nick. 😊"
+    answ[4]="Yo man ... whazzup? ✌️"
     rnd_answer
   fi
 fi
@@ -198,7 +225,7 @@ if [[ "$nick_low" == *"luigi"* ]]; then
     print_msg
   fi
   if [ "$command" = "!sleep" ]; then
-    answ[0]=":zzz:"
+    answ[0]="💤"
     answ[1]=":sleeping: … Time for a nap."
     rnd_answer
     say="/afk"
@@ -206,18 +233,18 @@ if [[ "$nick_low" == *"luigi"* ]]; then
   fi
   if [ "$command" = "!start" ]; then
     answ[0]="Yes, my lord."
-    answ[1]="I need more blood."
-    answ[2]="Ready to serve."
+    answ[1]="I need more blood.👺"
+    answ[2]="Ready to serve.👽"
     rnd_answer
   fi
 
   if [ "$command" = "!stop" ]; then
-    answ[0]="Ping me when you need me. :-)"
-    answ[1]="I jump :exclamation:"
+    answ[0]="Ping me when you need me. 🙂"
+    answ[1]="I jump ❗"
     rnd_answer
     say="/afk"
     print_msg
-    touch cmd.stop
+    touch wirebot.stop
   fi
     if [ "$command" = "!kill_screen" ]; then
     say="Cya."
