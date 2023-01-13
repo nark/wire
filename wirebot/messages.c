@@ -483,10 +483,10 @@ static void wr_message_chat_user_status(wi_p7_message_t *message) {
 		status		= wi_p7_message_string_for_name(message, WI_STR("wired.user.status"));
 		
 		if(!wi_is_equal(wr_user_nick(user), nick)) {
-			//wr_wprintf_prefix(wr_console_window, WI_STR("%@ is now known as %@"),
-			//	wr_user_nick(user), nick);
+				//wr_wprintf_prefix(wr_console_window, WI_STR("%@ is now known as %@"),
+				//wr_user_nick(user), nick);
 
-			//wr_user_set_nick(user, nick);
+			wr_user_set_nick(user, nick);
 		}
 
 		wr_user_set_idle(user, idle);
