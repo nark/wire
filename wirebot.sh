@@ -41,20 +41,22 @@ if [[ "$command" = \!* ]]; then
   login=""
   say="/clear"
   print_msg
-  say="/login \"$nick\""
+  say="/info \"$nick\""
   print_msg
   screen -S wirebot -p0 -X hardcopy wirebot.login
-  login=$( cat wirebot.login | grep "Login:" | sed 's/.*Login:\ //g' )
+  login=$( cat wirebot.login | grep "Login:" | sed 's/.*Login:\ //g' | xargs )
   rm wirebot.login
   
-  if [[ "$admin_user" == *"$login"* ]]; then
-    allowed=1
-  else
-    allowed=0
-    say="You are not allowed to do this $nick"
-    print_msg
+  if [[ "$login" != "" ]]; then
+    if [[ "$admin_user" == *"$login"* ]]; then
+      allowed=1
+    else
+      allowed=0
+      say="You are not allowed to do this $nick"
+      print_msg
+      exit
+    fi
   fi
-
 fi
 
 function rnd_answer {
