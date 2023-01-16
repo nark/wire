@@ -52,7 +52,7 @@ if [[ "$command" = \!* ]]; then
   else
     allowed=0
   fi
-  
+
 fi
 
 function rnd_answer {
@@ -144,6 +144,9 @@ function greeting_off {
 function kill_screen {
   if [ -f watcher.pid ]; then
     rm watcher.pid
+  fi
+  if [ -f wirebot.stop ]; then
+    rm wirebot.stop
   fi
   /usr/bin/screen -XS wirebot quit
 }
