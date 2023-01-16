@@ -146,6 +146,7 @@ void										wr_wprint_me(wr_window_t *, wi_string_t *, wi_string_t *);
 void										wr_wprint_msg(wr_window_t *, wi_string_t *, wi_string_t *);
 void										wr_print_topic(void);
 void										wr_print_users(wr_window_t *);
+void										wr_print_users_login(wr_window_t *);
 void										wr_print_user(wr_user_t *, wi_uinteger_t);
 
 void										wr_draw_header(void);
