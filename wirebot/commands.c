@@ -75,7 +75,6 @@ static void								wr_command_help(wi_array_t *);
 static void								wr_command_icon(wi_array_t *);
 static void								wr_command_ignore(wi_array_t *);
 static void								wr_command_info(wi_array_t *);
-static void								wr_command_info_login(wi_array_t *);
 static void								wr_command_invite(wi_array_t *);
 static void								wr_command_load(wi_array_t *);
 static void								wr_command_log(wi_array_t *);
@@ -95,7 +94,6 @@ static void								wr_command_unignore(wi_array_t *);
 static void								wr_command_uptime(wi_array_t *);
 static void								wr_command_version(wi_array_t *);
 static void								wr_command_who(wi_array_t *);
-static void								wr_command_who_login(wi_array_t *);
 static void								wr_command_ls(wi_array_t *);
 static void								wr_command_afk(wi_array_t *);
 static void								wr_command_rm(wi_array_t *);
@@ -162,10 +160,6 @@ static wr_commands_t			wr_commands[] = {
 	  true, WR_COMMAND_INFO_DESCRIPTION, WR_COMMAND_INFO_USAGE,
 	  true, 1, -1, WR_COMPLETER_NICKNAME,
 	  wr_command_info },
-	{ "login",
-	  true, WR_COMMAND_INFO_DESCRIPTION, WR_COMMAND_INFO_USAGE,
-	  true, 1, -1, WR_COMPLETER_NICKNAME,
-	  wr_command_info_login },
 	{ "invite",
 	  true, "Invite the user to the current private chat", "<user>",
 	  true, 1, -1, WR_COMPLETER_NICKNAME,
@@ -710,29 +704,7 @@ static void wr_command_info(wi_array_t *arguments) {
 	}
 }
 
-static void wr_command_info_login(wi_array_t *arguments) {
-	wi_enumerator_t		*enumerator;
-	wi_p7_message_t		*message;
-	wi_string_t			*nick;
-	wr_user_t			*user;
-	
-	enumerator = wi_array_data_enumerator(arguments);
-	
-	while((nick = wi_enumerator_next_data(enumerator))) {
-		user = wr_chat_user_with_nick(wr_public_chat, nick);
 
-		if(!user) {
-			wr_printf_prefix(WI_STR("info: %@: Client not found"),
-				nick);
-
-			continue;
-		}
-
-		message = wi_p7_message_with_name(WI_STR("wired.user.get_info"), wr_p7_spec);
-		wi_p7_message_set_uint32_for_name(message, wr_user_id(user), WI_STR("wired.user.id"));
-		wr_commands_send_message(message, WI_STR("info"));
-	}
-}
 
 /*
 	/invite <user> [<user> ...]
@@ -1286,6 +1258,8 @@ static void wr_command_who(wi_array_t *arguments) {
 	if(wr_window_is_chat(wr_current_window))
 		wr_print_users(wr_current_window);
 }
+
+
 
 /*
     /ls

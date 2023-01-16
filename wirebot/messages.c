@@ -79,7 +79,6 @@ static void										wr_message_server_info(wi_p7_message_t *);
 static void										wr_message_send_ping(wi_p7_message_t *);
 static void										wr_message_ping(wi_p7_message_t *);
 static void										wr_message_user_info(wi_p7_message_t *);
-static void										wr_message_user_info_login(wi_p7_message_t *);
 static void										wr_message_chat_user_list(wi_p7_message_t *);
 static void										wr_message_chat_user_list_done(wi_p7_message_t *);
 static void										wr_message_chat_topic(wi_p7_message_t *);
@@ -113,7 +112,6 @@ void wr_messages_init(void) {
 	WR_MESSAGE_HANDLER(WI_STR("wired.send_ping"), wr_message_send_ping);
 	WR_MESSAGE_HANDLER(WI_STR("wired.ping"), wr_message_ping);
 	WR_MESSAGE_HANDLER(WI_STR("wired.user.info"), wr_message_user_info);
-	WR_MESSAGE_HANDLER(WI_STR("wired.user.info"), wr_message_user_info_login);
 	WR_MESSAGE_HANDLER(WI_STR("wired.chat.user_list"), wr_message_chat_user_list);
 	WR_MESSAGE_HANDLER(WI_STR("wired.chat.user_list.done"), wr_message_chat_user_list_done);
 	WR_MESSAGE_HANDLER(WI_STR("wired.chat.topic"), wr_message_chat_topic);
@@ -370,15 +368,7 @@ static void wr_message_user_info(wi_p7_message_t *message) {
 	wr_printf_block(WI_STR("Idle Time:   %@, since %@"), interval, string);
 }
 
-static void wr_message_user_info_login(wi_p7_message_t *message) {
-	wi_date_t			*date;
-	wi_string_t			*string, *interval;
-	wi_p7_uint32_t		uid, build, bits;
 
-	wr_printf_block(WI_STR("%@"),
-		wi_p7_message_string_for_name(message, WI_STR("wired.user.login")));
-
-}
 
 static void wr_message_chat_user_list(wi_p7_message_t *message) {
 	wr_chat_t			*chat;

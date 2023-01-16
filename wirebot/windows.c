@@ -631,30 +631,6 @@ void wr_print_users(wr_window_t *window)
 		wr_print_user(user, max_length);
 }
 
-void wr_print_users_login(wr_window_t *window)
-{
-	wi_enumerator_t *enumerator;
-	wi_array_t *users;
-	wr_user_t *user;
-	wi_uinteger_t max_length = 0;
-
-	//if (window->chat == wr_public_chat)
-	//	wr_printf_prefix(WI_STR("Users currently online:"));
-	//else
-	//	wr_printf_prefix(WI_STR("Users in chat:"));
-
-	users = wr_chat_users(window->chat);
-	enumerator = wi_array_data_enumerator(users);
-
-	while ((user = wi_enumerator_next_data(enumerator)))
-		max_length = WI_MAX(max_length, wi_string_length(wr_user_nick(user)));
-
-	enumerator = wi_array_data_enumerator(users);
-
-	while ((user = wi_enumerator_next_data(enumerator)))
-		wr_print_user(user, max_length);
-}
-
 void wr_print_user(wr_user_t *user, wi_uinteger_t max_length)
 {
 	const char *color;
