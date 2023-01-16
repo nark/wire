@@ -51,6 +51,8 @@ if [[ "$command" = \!* ]]; then
     allowed=1
   else
     allowed=0
+    say="You are not allowed to do this $nick"
+    print_msg
   fi
 
 fi
