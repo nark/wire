@@ -21,6 +21,12 @@ watcher=0
 watchdir="/PATH/TO/FOLDER"
 ####################################################
 
+####################################################
+### Let these users (login-name) control the bot ###
+####################################################
+admin_user="admin,luigi,peter"
+####################################################
+
 SELF=$(SELF=$(dirname "$0") && bash -c "cd \"$SELF\" && pwd")
 cd "$SELF"
 
@@ -31,6 +37,22 @@ command=$( cat wirebot.cmd | sed 's/.*-###-//g' | xargs )
 function print_msg {
   /usr/bin/screen -S wirebot -p0 -X stuff "$say"^M
 }
+
+if [[ "$command" = \!* ]]; then
+  say="/clear"
+  print_msg
+  say="/login \"$nick\""
+  print_msg
+  screen -S wirebot -p0 -X hardcopy wirebot.login
+  login=$( cat wirebot.login | grep "Login:" | sed 's/.*Login:\ //g' )
+  rm wirebot.login
+  
+  if [[ "$admin_user" == *"$login"* ]]; then
+    allowed=1
+  else
+    allowed=0
+  fi
+fi
 
 function rnd_answer {
   size=${#answ[@]}
@@ -219,7 +241,7 @@ if [ $greeting = 1 ]; then
 fi
 
 #### Admin functions ####
-if [[ "$nick_low" == *"luigi"* ]]; then
+if [ "$allowed" = 1 ]; then
   if [ "$command" = "!test" ]; then
     say="Weeeeeeeee :blush:"
     print_msg
