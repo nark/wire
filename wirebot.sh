@@ -13,7 +13,6 @@ wordfilter=1
 greeting=1
 ####################################################
 
-
 ####################################################
 ######### Watch a directory for new files ##########
 ####################################################
@@ -39,6 +38,7 @@ function print_msg {
 }
 
 if [[ "$command" = \!* ]]; then
+  login=""
   say="/clear"
   print_msg
   say="/login \"$nick\""
@@ -52,6 +52,7 @@ if [[ "$command" = \!* ]]; then
   else
     allowed=0
   fi
+  
 fi
 
 function rnd_answer {
@@ -147,27 +148,28 @@ function kill_screen {
   /usr/bin/screen -XS wirebot quit
 }
 
-
-if [ -f wirebot.stop ]; then
-  if [ "$command" = "!start" ]; then
-        rm wirebot.stop
-  elif [ "$command" = "!stop" ]; then
-    say="/afk"
-    print_msg
-    exit
-  else
-    exit
-  fi
-elif [ ! -f wirebot.stop ]; then
-  if [ "$command" = "!start" ]; then
-        exit
-  fi
-fi
-
-if [[ "$command" == *"Using timestamp"* ]]; then
+if [ "$allowed" = 1 ]; then
   if [ -f wirebot.stop ]; then
-    rm wirebot.stop
+    if [ "$command" = "!start" ]; then
+          rm wirebot.stop
+    elif [ "$command" = "!stop" ]; then
+      say="/afk"
+      print_msg
+      exit
+    else
+      exit
+    fi
+  elif [ ! -f wirebot.stop ]; then
+    if [ "$command" = "!start" ]; then
+          exit
+    fi
   fi
+  fi
+
+  if [[ "$command" == *"Using timestamp"* ]]; then
+    if [ -f wirebot.stop ]; then
+      rm wirebot.stop
+    fi
 fi
 
 #### User join server (user_join) ####
