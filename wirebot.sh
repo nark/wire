@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #
-#### Put this file into your .wire home directory
+#### Put this file into your .wirebot home directory
 #### Make sure to make a "chmod +x wirebot.sh" before.
 
 ####################################################
