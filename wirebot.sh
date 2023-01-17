@@ -53,6 +53,9 @@ function kill_screen {
   if [ -f wirebot.stop ]; then
     rm wirebot.stop
   fi
+  if [ -f wirebot.pid ]; then
+    rm wirebot.pid
+  fi
   screen -XS wirebot quit
 }
 
@@ -216,6 +219,7 @@ if [[ "$command" = \!* ]]; then
   print_msg
   say="/info \"$nick\""
   print_msg
+  sleep 0.5
   screen -S wirebot -p0 -X hardcopy "$SELF"/wirebot.login
   login=$( cat wirebot.login | grep "Login:" | sed 's/.*Login:\ //g' | xargs )
   rm wirebot.login
@@ -261,7 +265,6 @@ if [ "$allowed" = 1 ]; then
   fi
     if [ "$command" = "!kill_screen" ]; then
     say="Cya."
-    print_msg
     kill_screen
   fi
 
