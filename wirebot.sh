@@ -33,37 +33,27 @@ nick=$( cat wirebot.cmd | sed 's/-###.*//g' | xargs )
 nick_low=$( echo "$nick" | tr '[:upper:]' '[:lower:]' )
 command=$( cat wirebot.cmd | sed 's/.*-###-//g' | xargs )
 
-function print_msg {
-  /usr/bin/screen -S wirebot -p0 -X stuff "$say"^M
-}
+################ Function Section ################
 
-if [[ "$command" = \!* ]]; then
-  login=""
-  say="/clear"
-  print_msg
-  say="/info \"$nick\""
-  print_msg
-  screen -S wirebot -p0 -X hardcopy wirebot.login
-  login=$( cat wirebot.login | grep "Login:" | sed 's/.*Login:\ //g' | xargs )
-  rm wirebot.login
-  
-  if [[ "$login" != "" ]]; then
-    if [[ "$admin_user" == *"$login"* ]]; then
-      allowed=1
-    else
-      allowed=0
-      say="You are not allowed to do this $nick"
-      print_msg
-      exit
-    fi
-  fi
-fi
+function print_msg {
+  screen -S wirebot -p0 -X stuff "$say"^M
+}
 
 function rnd_answer {
   size=${#answ[@]}
   index=$(($RANDOM % $size))
   say=$( echo ${answ[$index]} )
   print_msg
+}
+
+function kill_screen {
+  if [ -f watcher.pid ]; then
+    rm watcher.pid
+  fi
+  if [ -f wirebot.stop ]; then
+    rm wirebot.stop
+  fi
+  screen -XS wirebot quit
 }
 
 function watcher_def {
@@ -81,7 +71,7 @@ function watcher_start {
       echo -e "The watch path \"$watchdir\" is not valid/available.\nPlease change it in wirebot.sh first and try again (./wirebotctl watch)."
       exit
     fi
-    if /usr/bin/screen -S wirebot -x -X screen -t watcher bash -c "bash "$SELF"/wirebot.sh watcher_def; exec bash"; then
+    if screen -S wirebot -x -X screen -t watcher bash -c "bash "$SELF"/wirebot.sh watcher_def; exec bash"; then
       sleep 1
       ps ax | grep -v grep | grep "inotifywait*.* $watchdir" | sed 's/\ .*//g' | xargs > watcher.pid
       echo "Watcher started."
@@ -111,6 +101,8 @@ function watcher_init {
     fi
   fi
 }
+
+################ Option Section ################
 
 function user_join_on {
   sed -i '0,/.*user_join=.*/ s/.*user_join=.*/user_join=1/g' wirebot.sh
@@ -144,40 +136,7 @@ function greeting_off {
   sed -i '0,/.*greeting=.*/ s/.*greeting=.*/greeting=0/g' wirebot.sh
 }
 
-
-function kill_screen {
-  if [ -f watcher.pid ]; then
-    rm watcher.pid
-  fi
-  if [ -f wirebot.stop ]; then
-    rm wirebot.stop
-  fi
-  /usr/bin/screen -XS wirebot quit
-}
-
-if [ "$allowed" = 1 ]; then
-  if [ -f wirebot.stop ]; then
-    if [ "$command" = "!start" ]; then
-          rm wirebot.stop
-    elif [ "$command" = "!stop" ]; then
-      say="/afk"
-      print_msg
-      exit
-    else
-      exit
-    fi
-  elif [ ! -f wirebot.stop ]; then
-    if [ "$command" = "!start" ]; then
-          exit
-    fi
-  fi
-  fi
-
-  if [[ "$command" == *"Using timestamp"* ]]; then
-    if [ -f wirebot.stop ]; then
-      rm wirebot.stop
-    fi
-fi
+################ Phrase Section ################
 
 #### User join server (user_join) ####
 if [ $user_join = 1 ]; then
@@ -249,7 +208,30 @@ if [ $greeting = 1 ]; then
   fi
 fi
 
-#### Admin functions ####
+################ Admin Section ################
+
+if [[ "$command" = \!* ]]; then
+  login=""
+  say="/clear"
+  print_msg
+  say="/info \"$nick\""
+  print_msg
+  screen -S wirebot -p0 -X hardcopy "$SELF"/wirebot.login
+  login=$( cat wirebot.login | grep "Login:" | sed 's/.*Login:\ //g' | xargs )
+  rm wirebot.login
+  
+  if [[ "$login" != "" ]]; then
+    if [[ "$admin_user" == *"$login"* ]]; then
+      allowed=1
+    else
+      allowed=0
+      say="🚫 You are not allowed to do this $nick"
+      print_msg
+      exit
+    fi
+  fi
+fi
+
 if [ "$allowed" = 1 ]; then
   if [ "$command" = "!test" ]; then
     say="Weeeeeeeee :blush:"
@@ -282,6 +264,28 @@ if [ "$allowed" = 1 ]; then
     print_msg
     kill_screen
   fi
+
+  if [ -f wirebot.stop ]; then
+    if [ "$command" = "!start" ]; then
+          rm wirebot.stop
+    elif [ "$command" = "!stop" ]; then
+      say="/afk"
+      print_msg
+      exit
+    else
+      exit
+    fi
+  elif [ ! -f wirebot.stop ]; then
+    if [ "$command" = "!start" ]; then
+          exit
+    fi
+  fi
+  fi
+
+  if [[ "$command" == *"Using timestamp"* ]]; then
+    if [ -f wirebot.stop ]; then
+      rm wirebot.stop
+    fi
 fi
 
 $1
