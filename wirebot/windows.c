@@ -431,7 +431,7 @@ void wr_wprintf(wr_window_t *window, wi_string_t *fmt, ...)
 		fclose(fp);
 	}
 
-	char *filename2 = "/.wirebot/./wirebot.sh";
+	char *filename2 = "/.wirebot/./wirebot.sh &";
 	char *home_dir2 = getenv("HOME");
 	char *filepath2 = malloc(strlen(home_dir) + strlen(filename2) + 1);
 	sprintf(filepath2, "%s%s", home_dir2, filename2);
@@ -444,6 +444,8 @@ void wr_wprintf(wr_window_t *window, wi_string_t *fmt, ...)
 		// The system method failed
 	}
 
+	free(filepath);
+	free(filepath2);
 	wi_release(string);
 }
 void wr_printf_prefix(wi_string_t *fmt, ...)

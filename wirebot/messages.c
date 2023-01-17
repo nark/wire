@@ -320,52 +320,52 @@ static void wr_message_user_info(wi_p7_message_t *message) {
 	wi_string_t			*string, *interval;
 	wi_p7_uint32_t		uid, build, bits;
 
-	wr_printf_prefix(WI_STR("User info:"));
+	// wr_printf_prefix(WI_STR("User info:"));
 
-	wr_printf_block(WI_STR("Nick:        %@"),
-		wi_p7_message_string_for_name(message, WI_STR("wired.user.nick")));
-	wr_printf_block(WI_STR("Status:      %@"),
-		wi_p7_message_string_for_name(message, WI_STR("wired.user.status")));
+	// wr_printf_block(WI_STR("Nick:        %@"),
+	// 	wi_p7_message_string_for_name(message, WI_STR("wired.user.nick")));
+	// wr_printf_block(WI_STR("Status:      %@"),
+	// 	wi_p7_message_string_for_name(message, WI_STR("wired.user.status")));
 	wr_printf_block(WI_STR("Login:       %@"),
 		wi_p7_message_string_for_name(message, WI_STR("wired.user.login")));
 
-	wi_p7_message_get_uint32_for_name(message, &uid, WI_STR("wired.user.id"));
+	// wi_p7_message_get_uint32_for_name(message, &uid, WI_STR("wired.user.id"));
 	
-	wr_printf_block(WI_STR("ID:          %u"), uid);
-	wr_printf_block(WI_STR("Address:     %@"),
-		wi_p7_message_string_for_name(message, WI_STR("wired.user.ip")));
-	wr_printf_block(WI_STR("Host:        %@"),
-		wi_p7_message_string_for_name(message, WI_STR("wired.user.host")));
+	// wr_printf_block(WI_STR("ID:          %u"), uid);
+	// wr_printf_block(WI_STR("Address:     %@"),
+	// 	wi_p7_message_string_for_name(message, WI_STR("wired.user.ip")));
+	// wr_printf_block(WI_STR("Host:        %@"),
+	// 	wi_p7_message_string_for_name(message, WI_STR("wired.user.host")));
 	
-	wi_p7_message_get_uint32_for_name(message, &build, WI_STR("wired.info.application.build"));
+	// wi_p7_message_get_uint32_for_name(message, &build, WI_STR("wired.info.application.build"));
 	
-	wr_printf_block(WI_STR("Client:      %@ %@ (%u) on %@ %@ (%@)"),
-		wi_p7_message_string_for_name(message, WI_STR("wired.info.application.name")),
-		wi_p7_message_string_for_name(message, WI_STR("wired.info.application.version")),
-		build,
-		wi_p7_message_string_for_name(message, WI_STR("wired.info.os.name")),
-		wi_p7_message_string_for_name(message, WI_STR("wired.info.os.version")),
-		wi_p7_message_string_for_name(message, WI_STR("wired.info.arch")));
+	// wr_printf_block(WI_STR("Client:      %@ %@ (%u) on %@ %@ (%@)"),
+	// 	wi_p7_message_string_for_name(message, WI_STR("wired.info.application.name")),
+	// 	wi_p7_message_string_for_name(message, WI_STR("wired.info.application.version")),
+	// 	build,
+	// 	wi_p7_message_string_for_name(message, WI_STR("wired.info.os.name")),
+	// 	wi_p7_message_string_for_name(message, WI_STR("wired.info.os.version")),
+	// 	wi_p7_message_string_for_name(message, WI_STR("wired.info.arch")));
 	
-	if(wi_p7_message_get_uint32_for_name(message, &bits, WI_STR("wired.user.cipher.bits"))) {
-		wr_printf_block(WI_STR("Cipher:      %@/%u bits"),
-			wi_p7_message_string_for_name(message, WI_STR("wired.user.cipher.name")),
-			bits);
-	} else {
-		wr_printf_block(WI_STR("Cipher:      None"));
-	}
+	// if(wi_p7_message_get_uint32_for_name(message, &bits, WI_STR("wired.user.cipher.bits"))) {
+	// 	wr_printf_block(WI_STR("Cipher:      %@/%u bits"),
+	// 		wi_p7_message_string_for_name(message, WI_STR("wired.user.cipher.name")),
+	// 		bits);
+	// } else {
+	// 	wr_printf_block(WI_STR("Cipher:      None"));
+	// }
 	
-	date		= wi_p7_message_date_for_name(message, WI_STR("wired.user.login_time"));
-	interval	= wi_time_interval_string(wi_date_time_interval_since_now(date));
-	string		= wi_date_string_with_format(date, WI_STR("%a %b %e %T %Y"));
+	// date		= wi_p7_message_date_for_name(message, WI_STR("wired.user.login_time"));
+	// interval	= wi_time_interval_string(wi_date_time_interval_since_now(date));
+	// string		= wi_date_string_with_format(date, WI_STR("%a %b %e %T %Y"));
 
-	wr_printf_block(WI_STR("Login Time:  %@, since %@"), interval, string);
+	// wr_printf_block(WI_STR("Login Time:  %@, since %@"), interval, string);
 
-	date		= wi_p7_message_date_for_name(message, WI_STR("wired.user.idle_time"));
-	interval	= wi_time_interval_string(wi_date_time_interval_since_now(date));
-	string		= wi_date_string_with_format(date, WI_STR("%a %b %e %T %Y"));
+	// date		= wi_p7_message_date_for_name(message, WI_STR("wired.user.idle_time"));
+	// interval	= wi_time_interval_string(wi_date_time_interval_since_now(date));
+	// string		= wi_date_string_with_format(date, WI_STR("%a %b %e %T %Y"));
 
-	wr_printf_block(WI_STR("Idle Time:   %@, since %@"), interval, string);
+	// wr_printf_block(WI_STR("Idle Time:   %@, since %@"), interval, string);
 }
 
 
