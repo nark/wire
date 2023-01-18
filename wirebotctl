@@ -1,6 +1,7 @@
 #!/bin/sh
 
 PIDFILE="$HOME/.wirebot/wirebot.pid"
+PIDFILE_WATCHER="$HOME/.wirebot/watcher.pid"
 CONFIGFILE="$HOME/.wirebot/config"
 BASHFILE="$HOME/.wirebot/wirebot.sh"
 
@@ -71,23 +72,30 @@ case $CMD in
 		checkpid
 
 		if [ $RUNNING -eq 1 ]; then
-			echo "$PROG: $CMD: wirebot is running on pid $PID."
-			join_check=$( cat "$BASHFILE" | grep -v "sed" | grep "user_join=" | sed 's/.*=//g' )
-			leave_check=$( cat "$BASHFILE" | grep -v "sed" | grep "user_leave=" | sed 's/.*=//g' )
-			wordfilter_check=$( cat "$BASHFILE" | grep -v "sed" | grep "wordfilter=" | sed 's/.*=//g' )
-			common_reply_check=$( cat "$BASHFILE" | grep -v "sed" | grep "common_reply=" | sed 's/.*=//g' )
-			admin_user_check=$( cat "$BASHFILE" | grep -v "sed" | grep "admin_user=" | sed -e 's/.*=//g' -e 's/\"//g' )
 			echo ""
-			echo "Settings:"
-			echo ""
-			echo "User join    =" "$join_check"
-			echo "User leave   =" "$leave_check"
-			echo "Wordfilter   =" "$wordfilter_check"
-			echo "Common reply =" "$common_reply_check"
-			echo "Admin user   =" "$admin_user_check"
-			echo ""
-
+			echo "$PROG: $CMD: wirebot is running on pid $PID"
+			
+			check=$( ps ax | grep -v grep | grep "inotifywait" )
+  				if [ "$check" != "" ] && [ -f "$PIDFILE_WATCHER" ]; then
+					WATCHER_PID=$( cat "$PIDFILE_WATCHER" )
+					echo "$PROG: $CMD: watcher is running on pid $WATCHER_PID"
+				fi
 		fi
+
+		join_check=$( cat "$BASHFILE" | grep -v "sed" | grep "user_join=" | sed 's/.*=//g' )
+		leave_check=$( cat "$BASHFILE" | grep -v "sed" | grep "user_leave=" | sed 's/.*=//g' )
+		wordfilter_check=$( cat "$BASHFILE" | grep -v "sed" | grep "wordfilter=" | sed 's/.*=//g' )
+		common_reply_check=$( cat "$BASHFILE" | grep -v "sed" | grep "common_reply=" | sed 's/.*=//g' )
+		admin_user_check=$( cat "$BASHFILE" | grep -v "sed" | grep "admin_user=" | sed -e 's/.*=//g' -e 's/\"//g' )
+		echo ""
+		echo "Settings:"
+		echo ""
+		echo "User join    =" "$join_check"
+		echo "User leave   =" "$leave_check"
+		echo "Wordfilter   =" "$wordfilter_check"
+		echo "Common reply =" "$common_reply_check"
+		echo "Admin user   =" "$admin_user_check"
+		echo ""
 		;;
 
 	screen)
@@ -167,9 +175,10 @@ case $CMD in
 		/bin/bash "$BASHFILE" common_reply_on
 		;;
 
-	common_reply__off)
+	common_reply_off)
 		/bin/bash "$BASHFILE" common_reply_off
 		;;
+
 	*)
 		cat <<EOF
 
