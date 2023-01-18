@@ -176,13 +176,13 @@ case $CMD in
 Usage:  wirebotctl [COMMAND]
 
 	COMMAND:
-	start			start wirebot
-	stop			stop wirebot
-	restart			restart wirebot
-	screen			go into screen session (detach with ctrl+a and than d)
+	start			Start wirebot
+	stop			Stop wirebot
+	restart			Restart wirebot
+	screen			Join screen session (To exit session press ctrl+a and than d)
 	watch/nowatch		Switch filewatching on/off
-	status			show the status
-	config			show the configuration
+	status			Show the status
+	config			Show the configuration
 	
 	join_on			Activate greeting if user joined server
 	join_off		Deactivate greeting if user joined server
