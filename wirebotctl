@@ -2,6 +2,7 @@
 
 PIDFILE="$HOME/.wirebot/wirebot.pid"
 CONFIGFILE="$HOME/.wirebot/config"
+BASHFILE="$HOME/.wirebot/wirebot.sh"
 
 # The path to your wirebot binary
 WIREBOT=$( SELF=$(dirname "$0") && bash -c "cd \"$SELF\" && pwd" )
@@ -66,6 +67,26 @@ case $CMD in
 			exit 1
 		fi
 		;;
+	status)
+		checkpid
+
+		if [ $RUNNING -eq 1 ]; then
+			echo "$PROG: $CMD: wirebot is running on pid $PID."
+			join_check=$( cat "$BASHFILE" | grep -v "sed" | grep "user_join=" | sed 's/.*=//g' )
+			leave_check=$( cat "$BASHFILE" | grep -v "sed" | grep "user_leave=" | sed 's/.*=//g' )
+			wordfilter_check=$( cat "$BASHFILE" | grep -v "sed" | grep "wordfilter=" | sed 's/.*=//g' )
+			common_reply_check=$( cat "$BASHFILE" | grep -v "sed" | grep "common_reply=" | sed 's/.*=//g' )
+			echo ""
+			echo "Settings:"
+			echo ""
+			echo "User join    =" "$join_check"
+			echo "User leave   =" "$leave_check"
+			echo "Wordfilter   =" "$wordfilter_check"
+			echo "Common reply =" "$common_reply_check"
+			echo ""
+
+		fi
+		;;
 
 	screen)
 		checkrunning
@@ -105,22 +126,54 @@ case $CMD in
 		;;
 
 	watch)
-		/bin/bash "$HOME/.wirebot/wirebot.sh" watcher_start
+		/bin/bash "$BASHFILE" watcher_start
 		;;
 
 	nowatch)
-		/bin/bash "$HOME/.wirebot/wirebot.sh" watcher_stop
+		/bin/bash "$BASHFILE" watcher_stop
 		;;
 
 	config)
 		grep -v "^#" $CONFIGFILE | grep -v "^$" | sort
 		;;
+	
+	join_on)
+		/bin/bash "$BASHFILE" user_join_on
+		;;
 
+	join_off)
+		/bin/bash "$BASHFILE" user_join_off
+		;;
+
+	leave_on)
+		/bin/bash "$BASHFILE" user_leave_on
+		;;
+
+	leave_off)
+		/bin/bash "$BASHFILE" user_leave_off
+		;;
+
+	wordfilter_on)
+		/bin/bash "$BASHFILE" wordfilter_on
+		;;
+
+	wordfilter_off)
+		/bin/bash "$BASHFILE" wordfilter_off
+		;;
+
+	common_reply_on)
+		/bin/bash "$BASHFILE" common_reply_on
+		;;
+
+	common_reply__off)
+		/bin/bash "$BASHFILE" common_reply_off
+		;;
 	*)
 		cat <<EOF
 
-Usage: wirebotctl [start | stop | restart | watch/nowatch | screen | status | config]
+Usage:  wirebotctl [COMMAND]
 
+	COMMAND:
 	start			start wirebot
 	stop			stop wirebot
 	restart			restart wirebot
@@ -128,7 +181,19 @@ Usage: wirebotctl [start | stop | restart | watch/nowatch | screen | status | co
 	watch/nowatch		Switch filewatching on/off
 	status			show the status
 	config			show the configuration
-    
+	
+	join_on			Activate greeting if user joined server
+	join_off		Deactivate greeting if user joined server
+	
+	leave_on		Activate greeting if user leaved server
+	leave_off		Deactivate greeting if user leaved server
+
+	wordfilter_on		Activate wordfilter
+	wordfilter_off		Deactivate wordfilfter
+	
+	common_reply_on		Activate talkativeness
+	common_reply_off	Deactivate talkativeness	
+
 By Prof. Dr. Luigi 
 Original by Rafaël Warnault <dev@read-write.fr>
 

@@ -10,7 +10,7 @@
 user_join=1
 user_leave=1
 wordfilter=1
-greeting=1
+common_reply=1
 ####################################################
 
 ####################################################
@@ -100,7 +100,7 @@ function watcher_init {
     if [ -d "$watchdir" ]; then
       watcher_start
     else
-      echo -e "The watch path \"$watchdir\" is not valid/available.\nPlease change it in wirebot.sh first and try again (./wirebotctl watch)."
+      echo -e "The watch path \"$watch=dir\" is not valid/available.\nPlease change it in wirebot.sh first and try again (./wirebotctl watch)."
     fi
   fi
 }
@@ -131,12 +131,12 @@ function wordfilter_off {
   sed -i '0,/.*wordfilter=.*/ s/.*wordfilter=.*/wordfilter=0/g' wirebot.sh
 }
 
-function greeting_on {
-  sed -i '0,/.*greeting=.*/ s/.*greeting=.*/greeting=1/g' wirebot.sh
+function common_reply_on {
+  sed -i '0,/.*common_reply=.*/ s/.*common_reply=.*/common_reply=1/g' wirebot.sh
 }
 
-function greeting_off {
-  sed -i '0,/.*greeting=.*/ s/.*greeting=.*/greeting=0/g' wirebot.sh
+function common_reply_off {
+  sed -i '0,/.*common_reply=.*/ s/.*common_reply=.*/common_reply=0/g' wirebot.sh
 }
 
 ################ Phrase Section ################
@@ -174,8 +174,8 @@ if [ $wordfilter = 1 ]; then
   fi
 fi
 
-#### Common (common) ####
-if [ $common = 1 ]; then
+#### Common (common_reply) ####
+if [ $common_reply = 1 ]; then
   if [[ "$command" = "wired" ]]; then
     answ[0]="Uh? What's "Wired" $nick? ‍😖"
     answ[1]="Ooooh, Wired! The magazine ? 😟"
@@ -197,10 +197,6 @@ if [ $common = 1 ]; then
     answ[5]="runs!"
     rnd_answer
   fi
-fi
-
-#### Greetings (greeting) ####
-if [ $greeting = 1 ]; then
   if [ "$command" = "hello" ] || [ "$command" = "hey" ] || [ "$command" = "hi" ]; then
     answ[0]="Hey $nick. 😁"
     answ[1]="Hello $nick. 👋"
@@ -229,7 +225,7 @@ if [[ "$command" = \!* ]]; then
       allowed=1
     else
       allowed=0
-      say="🚫 You are not allowed to do this $nick"
+      say="🚫 You are not allowed to do this $nick 🚫"
       print_msg
       exit
     fi
@@ -237,8 +233,8 @@ if [[ "$command" = \!* ]]; then
 fi
 
 if [ "$allowed" = 1 ]; then
-  if [ "$command" = "!test" ]; then
-    say="Weeeeeeeee :blush:"
+  if [ "$command" = "!" ]; then
+    say="⛔ This command is not valid. ⛔"
     print_msg
   fi
   if [ "$command" = "!sleep" ]; then
@@ -254,7 +250,6 @@ if [ "$allowed" = 1 ]; then
     answ[2]="Ready to serve.👽"
     rnd_answer
   fi
-
   if [ "$command" = "!stop" ]; then
     answ[0]="Ping me when you need me. 🙂"
     answ[1]="I jump ❗"
