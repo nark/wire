@@ -76,6 +76,7 @@ case $CMD in
 			leave_check=$( cat "$BASHFILE" | grep -v "sed" | grep "user_leave=" | sed 's/.*=//g' )
 			wordfilter_check=$( cat "$BASHFILE" | grep -v "sed" | grep "wordfilter=" | sed 's/.*=//g' )
 			common_reply_check=$( cat "$BASHFILE" | grep -v "sed" | grep "common_reply=" | sed 's/.*=//g' )
+			admin_user_check=$( cat "$BASHFILE" | grep -v "sed" | grep "admin_user=" | sed -e 's/.*=//g' -e 's/\"//g' )
 			echo ""
 			echo "Settings:"
 			echo ""
@@ -83,6 +84,7 @@ case $CMD in
 			echo "User leave   =" "$leave_check"
 			echo "Wordfilter   =" "$wordfilter_check"
 			echo "Common reply =" "$common_reply_check"
+			echo "Admin user   =" "$admin_user_check"
 			echo ""
 
 		fi
