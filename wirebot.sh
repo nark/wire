@@ -1,14 +1,14 @@
 #!/bin/bash
 #
 #
-#### Put this file into your .wirebot home directory
+#### Put this file into your .wire home directory
 #### Make sure to make a "chmod +x wirebot.sh" before.
 
 ####################################################
 #### Switch desired function on or off (0 or 1).####
 ####################################################
-user_join=1
-user_leave=1
+user_join=0
+user_leave=0
 wordfilter=1
 common_reply=1
 ####################################################
@@ -16,8 +16,14 @@ common_reply=1
 ####################################################
 ######### Watch a directory for new files ##########
 ####################################################
-watcher=0
-watchdir="/PATH/TO/FOLDER"
+watcher=1
+watchdir="/PATH/TO/FILES"
+####################################################
+
+####################################################
+######### RSS Feed On/Off ##########
+####################################################
+rssfeed=1
 ####################################################
 
 ####################################################
@@ -68,7 +74,7 @@ function watcher_def {
 }
 
 function watcher_start {
-  check=$( ps ax | grep "inotifywait" | grep "$watchdir" )
+  check=$( ps ax | grep -v grep | grep "inotifywait" | grep "$watchdir" )
   if [ "$check" = "" ]; then
     if ! [ -d "$watchdir" ]; then
       echo -e "The watch path \"$watchdir\" is not valid/available.\nPlease change it in wirebot.sh first and try again (./wirebotctl watch)."
@@ -105,6 +111,20 @@ function watcher_init {
   fi
 }
 
+function rssfeed_def {
+  ./rss.sh
+}
+
+function rssfeed_start {
+  check=$( ps ax | grep -v grep | grep "rss.sh" )
+  if [ "$check" = "" ]; then
+    screen -S wirebot -x -X screen -t rss bash -c "bash "$SELF"/wirebot.sh rssfeed_def; exec bash" &
+    sleep 2
+    ps ax | grep -v grep | grep -v sleep | grep "rss.sh" | sed 's/\ .*//g' | xargs > rss.pid
+  fi
+}
+
+
 ################ Option Section ################
 
 function user_join_on {
@@ -137,6 +157,14 @@ function common_reply_on {
 
 function common_reply_off {
   sed -i '0,/.*common_reply=.*/ s/.*common_reply=.*/common_reply=0/g' wirebot.sh
+}
+
+function rssfeed_on {
+  sed -i '0,/.*rssfeed=.*/ s/.*rssfeed=.*/rssfeed=1/g' wirebot.sh
+}
+
+function rssfeed_off {
+  sed -i '0,/.*rssfeed=.*/ s/.*rssfeed=.*/rssfeed=0/g' wirebot.sh
 }
 
 ################ Phrase Section ################
@@ -217,7 +245,7 @@ if [[ "$command" = \!* ]]; then
   print_msg
   sleep 0.5
   screen -S wirebot -p0 -X hardcopy "$SELF"/wirebot.login
-  login=$( cat wirebot.login | grep "Login:" | sed 's/.*Login:\ //g' | xargs )
+  login=$( cat wirebot.login | grep -v grep | grep "Login:" | sed 's/.*Login:\ //g' | xargs )
   rm wirebot.login
   
   if [[ "$login" != "" ]]; then
