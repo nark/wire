@@ -62,6 +62,9 @@ function kill_screen {
   if [ -f wirebot.pid ]; then
     rm wirebot.pid
   fi
+    if [ -f rss.pid ]; then
+    rm rss.pid
+  fi
   screen -XS wirebot quit
 }
 
