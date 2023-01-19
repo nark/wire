@@ -17,7 +17,7 @@ common_reply=1
 ######### Watch a directory for new files ##########
 ####################################################
 watcher=1
-watchdir="/PATH/TO/FILES"
+watchdir="/mnt/filez/00 Upload Folders/Mac"
 ####################################################
 
 ####################################################
@@ -124,8 +124,9 @@ function rssfeed_start {
     screen -S wirebot -x -X screen -t rss bash -c "bash "$SELF"/wirebot.sh rssfeed_def; exec bash" &
     sleep 2
     ps ax | grep -v grep | grep -v sleep | grep "rss.sh" | sed 's/\ .*//g' | xargs > rss.pid
+    echo "RSS feed started."
   else
-    echo "RSSfeed is already running!"
+    echo "RSS feed is already running!"
     exit
   fi
 }
@@ -309,6 +310,19 @@ if [ "$allowed" = 1 ]; then
     print_msg
     touch wirebot.stop
   fi
+  if [ "$command" = "!userjoin on" ]; then
+    user_join_on
+  fi
+  if [ "$command" = "!userjoin off" ]; then
+    user_join_off
+  fi  
+  if [ "$command" = "!userleave on" ]; then
+    user_leave_on
+  fi
+  if [ "$command" = "!userleave off" ]; then
+    user_leave_off
+  fi 
+  fi
     if [ "$command" = "!kill_screen" ]; then
     say="Cya."
     kill_screen
@@ -329,12 +343,12 @@ if [ "$allowed" = 1 ]; then
           exit
     fi
   fi
-  fi
 
   if [[ "$command" == *"Using timestamp"* ]]; then
     if [ -f wirebot.stop ]; then
       rm wirebot.stop
-    fi
+  fi
+ 
 fi
 
 $1
