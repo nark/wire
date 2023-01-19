@@ -46,6 +46,7 @@ case $CMD in
 
 		if screen -Sdm wirebot $WIREBOT/wirebot ; then
 			/bin/bash "$HOME/.wirebot/wirebot.sh" watcher_init
+			/bin/bash "$HOME/.wirebot/wirebot.sh" rssfeed_init
 			echo "$PROG: $CMD: wirebot started"
 		else
 			echo "$PROG: $CMD: wirebot could not be started"

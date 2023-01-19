@@ -116,11 +116,31 @@ function rssfeed_def {
 }
 
 function rssfeed_start {
-  check=$( ps ax | grep -v grep | grep "rss.sh" )
+  check=$( ps ax | grep -v grep | grep "./rss.sh" )
   if [ "$check" = "" ]; then
     screen -S wirebot -x -X screen -t rss bash -c "bash "$SELF"/wirebot.sh rssfeed_def; exec bash" &
     sleep 2
     ps ax | grep -v grep | grep -v sleep | grep "rss.sh" | sed 's/\ .*//g' | xargs > rss.pid
+  else
+    echo "RSSfeed is already running!"
+    exit
+  fi
+}
+
+function rssfeed_stop {
+  if ! [ -f rss.pid ]; then
+    echo "RSS feed is not running!"
+  else
+    rssfeed_pid=$( cat rss.pid )
+    kill -KILL "$rssfeed_pid"
+    rm rss.pid
+    echo "RSS feed stopped."
+  fi
+}
+
+function rssfeed_init {
+  if [ "$rssfeed" = 1 ]; then
+    rssfeed_start
   fi
 }
 
