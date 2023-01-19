@@ -10,7 +10,7 @@ function read_rss {
   tail -n +4 | \
   sed -e 's/^[ \t]*//' | \
   sed -e 's/<title>//' -e 's/<\/title>//' -e 's/<description>/  /' -e 's/<\/description>//' | \
-  head -n 1 | sed -e 's/.*CDATA\[//g' -e 's/<br\/>//g' -e 's/<\/a>//g' -e 's/<a href="//g' -e 's/\">/\ /g' )
+  head -n 1 | sed -e 's/.*CDATA\[//g' -e 's/<br\/>//g' -e 's/<\/a>//g' -e 's/<em>//g' -e 's/<\/em>//g' -e 's/<a href="//g' -e 's/\">/\ /g' )
   say=$( echo :newspaper: "$say" )
 }
 
