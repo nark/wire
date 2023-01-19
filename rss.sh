@@ -2,6 +2,7 @@
 #
 
 RSS_URL="https://feeds.macrumors.com/MacRumors-All"
+INTERVAL="5m"
 
 function read_rss {
   say=$( curl --silent "$RSS_URL" | \
@@ -12,11 +13,21 @@ function read_rss {
   head -n 1 | sed -e 's/.*CDATA\[//g' -e 's/<br\/>//g' -e 's/<\/a>//g' -e 's/<a href="//g' -e 's/\">/\ /g' )
 }
 
-last=""
 while true
 do
   now="$(curl "$RSS_URL" 2> /dev/null | grep pubDate | head -1)"
-  test "$last" != "$now" && read_rss &&  echo toll #screen -S wirebot -p0 -X stuff "$say"^M
-  last="$now"
-  sleep 5m
+  
+  if [ -f rss.brain ]; then
+    check=$( cat rss.brain | grep -v grep | grep "$now" )
+  fi
+  
+  if  [ "$check" != "" ]; then
+    echo "War schon"
+  else
+      read_rss
+      screen -S wirebot -p0 -X stuff "$say"^M
+      echo "$now" >> rss.brain
+  fi
+
+  sleep "$INTERVAL"
 done
