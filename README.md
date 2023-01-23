@@ -108,15 +108,34 @@ If you got/send a msg you can cycle through the windows with:
 
 #### 7. Control wirebot:
 
-	Usage: wirebotctl [start | stop | restart | watch/nowatch | screen | status | config]
+	Usage:  wirebotctl [COMMAND]
 
-	start			start wirebot
-	stop			stop wirebot
-	restart			restart wirebot
-	screen			go into screen session (detach with ctrl+a and than d)
+	COMMAND:
+	start			Start wirebot
+	stop			Stop wirebot
+	restart			Restart wirebot
+	screen			Join screen session (To exit session press ctrl+a and than d)
 	watch/nowatch		Switch filewatching on/off
-	status			show the status
-	config			show the configuration
+	status			Show the status
+	config			Show the configuration
+	
+	join_on			Activate greeting if user joined server
+	join_off		Deactivate greeting if user joined server
+	
+	leave_on		Activate greeting if user leaved server
+	leave_off		Deactivate greeting if user leaved server
+
+	wordfilter_on		Activate wordfilter
+	wordfilter_off		Deactivate wordfilfter
+	
+	common_reply_on		Activate talkativeness
+	common_reply_off	Deactivate talkativeness	
+	
+	rssfeed_on		Activate RSS Newsfeed
+	rssfeed_off		Deactivate RSS Newsfeed
+
+By Prof. Dr. Luigi 
+Original by Rafaël Warnault <dev@read-write.fr>
 
 If you want to extent the wirebot with functions you can edit wirebot.sh in your .wirebot Directory.
 
