@@ -24,7 +24,7 @@ Installing Wire Client from sources will be done using the Autotools standard (c
 
 	git clone https://github.com/ProfDrLuigi/wirebot
 
-Then move to the `wire` directory:
+Then move to the `wirebot` directory:
 
 	cd wirebot/
 
