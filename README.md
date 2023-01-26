@@ -43,7 +43,7 @@ To start configuration, use the following command:
 
 	./configure
 
-Wire Client is designed to be installed into `/usr/local` by default. To change this, run:
+Wire Client is designed to be installed into `/usr/local/bin` by default. To change this, run:
 
 	./configure --prefix=/path	
 
