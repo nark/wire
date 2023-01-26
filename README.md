@@ -49,8 +49,7 @@ wirebot is designed to be installed into `/usr/local/bin` by default. To change 
 
 If you installed OpenSSL in a non-standard path, use the following command example as reference:
 
-	env CPPFLAGS=-I/usr/local/opt/openssl/include \
-	     LDFLAGS=-L/usr/local/opt/openssl/lib ./configure
+	env CPPFLAGS=-I/usr/local/opt/openssl/include LDFLAGS=-L/usr/local/opt/openssl/lib ./configure
 
 Use `./configure --help` in order to display more options.
 
