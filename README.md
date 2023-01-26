@@ -58,6 +58,8 @@ This will require write permissions to `/usr/local/bin`, or whatever directory y
 ##### 4. Compile and install Binary
 	make
 	sudo make install
+	mkdir ~/.wirebot
+	cp wirebot.sh rss.sh config ~/.wirebot 
 
 ##### 5. Running wirebot (runs in a screen session)
 
