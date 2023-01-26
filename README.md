@@ -12,7 +12,7 @@ This tutorial explains how to install and run wirebot on an UNIX-like operating 
 
 #### Howto install on:
 
-**Debian/Ubuntu**
+**Ubuntu7Debian (except Debian 9)**
 
 	sudo apt-get install -y curl build-essential autoconf screen inotify-tools git libxml2-dev libssl-dev zlib1g-dev libreadline-dev libcurl4-gnutls-dev
 
