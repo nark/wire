@@ -10,7 +10,7 @@ This is the former CLI client "wire" (https://github.com/nark/wire) which has no
 
 This tutorial explains how to install and run wirebot on an UNIX-like operating system.
 
-#### Howto install on:
+### Howto install on:
 
 **Ubuntu/Debian10 and higher only**
 
