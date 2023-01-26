@@ -62,6 +62,8 @@ This will require write permissions to `/usr/local/bin`, or whatever directory y
 	cp wirebot.sh rss.sh config ~/.wirebot
 	chmod +x ~/.wirebot/wirebot.sh
 
+Don't forget to put your credentials into ~/.wirebot/config before you start the bot the first time.
+
 ##### 5. Running wirebot (runs in a screen session)
 
 To start the installed wirebot, run:
