@@ -65,7 +65,7 @@ This will require write permissions to `/usr/local/bin`, or whatever directory y
 
 To start the installed wirebot, run:
 
-	/usr/local/bin/./wirebotctl start
+	/usr/local/bin/wirebot/./wirebotctl start
 
 You can inject any Text from any script to the session this way:
 	
