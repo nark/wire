@@ -16,6 +16,10 @@ This tutorial explains how to install and run wirebot on an UNIX-like operating 
 
 	sudo apt-get install -y curl build-essential autoconf screen inotify-tools git libxml2-dev libssl-dev zlib1g-dev libreadline-dev libcurl4-gnutls-dev
 
+**CentOS 8 / Fedora**
+	
+	sudo yum -y install curl screen git libtool openssl-devel sqlite-devel libxml2-devel zlib-devel readline-devel libcurl-devel autoconf gcc make inotify-tools
+	
 ### Getting started
 
 Installing wirebot from sources will be done using the Autotools standard (configure, make, make install).
