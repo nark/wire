@@ -1,0 +1,5 @@
+charset UTF-8
+open -l USER -p PASSWORT -P PORT URL
+nick YOUR_NAME
+status YOUR_STATUS
+icon /home/YOUR_USER/.wirebot/PICTURE.png
