@@ -60,11 +60,9 @@ This will require write permissions to `/usr/local/bin`, or whatever directory y
 
 It´s designed to run it in a screen-Session.
 
-To start an installed wirebot, run:
+To start the installed wirebot, run:
 
-	screen -Sdm wirebot /usr/local/bin/wirebot
-
-It´s very important to run it this way because all Bot-Functions assumes that there is a screen session "wirebot" (p0) running.
+	/usr/local/bin/./wirebotctl start
 
 You can inject any Text from any script to the session this way:
 	
@@ -72,15 +70,11 @@ You can inject any Text from any script to the session this way:
 
 To enter the running screen session simply type:
 	
-	screen -rS wirebot
+	/usr/local/bin/./wirebotctl screen
 	
 To leave the session (not closing!) type
 
 	ctrl + a and than d
-
-If you are not familiar with "screen" visit this Site e.g.:
-
-	https://linuxize.com/post/how-to-use-linux-screen
 
 ##### 6. Configuration
 
