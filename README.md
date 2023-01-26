@@ -18,9 +18,9 @@ This tutorial explains how to install and run wirebot on an UNIX-like operating 
 
 ### Getting started
 
-Installing Wire Client from sources will be done using the Autotools standard (configure, make, make install).
+Installing wirebot from sources will be done using the Autotools standard (configure, make, make install).
 
-##### 1. Get Wire Client sources via Terminal (git must be installed!):
+##### 1. Get wirebot sources via Terminal:
 
 	git clone https://github.com/ProfDrLuigi/wirebot
 
@@ -56,9 +56,7 @@ Use `./configure --help` in order to display more options.
 
 This will require write permissions to `/usr/local/bin`, or whatever directory you set as the prefix above. Depending of your OS setup, you may require to use `sudo`.
 
-##### 6. Running wirebot
-
-It´s designed to run it in a screen-Session.
+##### 6. Running wirebot (runs in a screen session)
 
 To start the installed wirebot, run:
 
@@ -72,7 +70,7 @@ To enter the running screen session simply type:
 	
 	/usr/local/bin/./wirebotctl screen
 	
-To leave the session (not closing!) type
+To leave the session (not closing!) type:
 
 	ctrl + a and than d
 
