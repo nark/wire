@@ -1,5 +1,5 @@
 charset UTF-8
-open -l USER -p PASSWORT -P PORT URL
+open -l USER -p PASSWORT -P 4871 127.0.0.1
 nick YOUR_NAME
 status YOUR_STATUS
 icon /home/YOUR_USER/.wirebot/PICTURE.png
