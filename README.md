@@ -32,7 +32,6 @@ Initialize and update submodules repositories:
 
 	git submodule update --init --recursive --remote
 	libwired/bootstrap
-	sed -i 's/${exec_prefix}\/bin/${exec_prefix}/g' configure
 
 Then check that the `libwired` directory was not empty and `configure` file exists.
 
