@@ -1,8 +1,6 @@
 #!/bin/bash
 #
 #
-#### Put this file into your .wire home directory
-#### Make sure to make a "chmod +x wirebot.sh" before.
 
 ####################################################
 #### Switch desired function on or off (0 or 1).####
