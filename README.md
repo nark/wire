@@ -56,7 +56,7 @@ Use `./configure --help` in order to display more options.
 This will require write permissions to `/usr/local/bin`, or whatever directory you set as the prefix above. Depending of your OS setup, you may require to use `sudo`.
 
 ##### 4. Compile and install Binary
-	sudo make
+	make
 	sudo make install
 
 ##### 5. Running wirebot (runs in a screen session)
