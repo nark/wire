@@ -24,6 +24,10 @@ This tutorial explains how to install and run wirebot on an UNIX-like operating 
 
 	sudo yum install epel-release
 	sudo yum -y install curl screen git libtool openssl-devel sqlite-devel libxml2-devel zlib-devel readline-devel libcurl-devel autoconf gcc make inotify-tools
+
+**openSUSE**
+
+	sudo zypper install curl screen libtool libopenssl-devel sqlite3-devel libxml2-devel zlib-devel readline-devel libcurl-devel autoconf gcc make inotify-tools
 	
 ### Getting started
 
