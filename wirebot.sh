@@ -1,8 +1,6 @@
 #!/bin/bash
 #
 #
-#### Put this file into your .wire home directory
-#### Make sure to make a "chmod +x wirebot.sh" before.
 
 ####################################################
 #### Switch desired function on or off (0 or 1).####
@@ -16,14 +14,14 @@ common_reply=1
 ####################################################
 ######### Watch a directory for new files ##########
 ####################################################
-watcher=1
-watchdir="/mnt/filez/00 Upload Folders/Mac"
+watcher=0
+watchdir="/PATH/TO/FILES"
 ####################################################
 
 ####################################################
-######### RSS Feed On/Off ##########
+################# RSS Feed On/Off ##################
 ####################################################
-rssfeed=1
+rssfeed=0
 ####################################################
 
 ####################################################
@@ -97,12 +95,12 @@ function watcher_stop {
   if ! [ -f watcher.pid ]; then
     echo "Watcher is not running!"
   else
-    watcher_pid=$( cat watcher.pid )
-    kill -KILL "$watcher_pid"
+    screen -S wirebot -p "watcher" -X kill
     rm watcher.pid
     echo "Watcher stopped."
   fi
 }
+
 
 function watcher_init {
   if [ "$watcher" = 1 ]; then
@@ -135,8 +133,7 @@ function rssfeed_stop {
   if ! [ -f rss.pid ]; then
     echo "RSS feed is not running!"
   else
-    rssfeed_pid=$( cat rss.pid )
-    kill -KILL "$rssfeed_pid"
+    screen -S wirebot -p "rss" -X kill
     rm rss.pid
     echo "RSS feed stopped."
   fi

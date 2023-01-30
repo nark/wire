@@ -10,21 +10,34 @@ This is the former CLI client "wire" (https://github.com/nark/wire) which has no
 
 This tutorial explains how to install and run wirebot on an UNIX-like operating system.
 
-#### Howto install on:
+### Howto install on:
 
-**Debian/Ubuntu**
+**Ubuntu/Debian10 and higher only**
 
-	sudo apt-get install -y build-essential autoconf screen inotify-tools git libxml2-dev libssl-dev zlib1g-dev libreadline-dev
+	sudo apt-get install -y curl build-essential autoconf screen inotify-tools git libxml2-dev libssl-dev zlib1g-dev libreadline-dev libcurl4-gnutls-dev
 
+**Fedora**
+	
+	sudo yum -y install curl screen git libtool openssl-devel sqlite-devel libxml2-devel zlib-devel readline-devel libcurl-devel autoconf gcc make inotify-tools
+
+**CentOS**
+
+	sudo yum install epel-release
+	sudo yum -y install curl screen git libtool openssl-devel sqlite-devel libxml2-devel zlib-devel readline-devel libcurl-devel autoconf gcc make inotify-tools
+
+**openSUSE**
+
+	sudo zypper install curl screen libtool libopenssl-devel sqlite3-devel libxml2-devel zlib-devel readline-devel libcurl-devel autoconf gcc make inotify-tools
+	
 ### Getting started
 
-Installing Wire Client from sources will be done using the Autotools standard (configure, make, make install).
+Installing wirebot from sources will be done using the Autotools standard (configure, make, make install).
 
-##### 1. Get Wire Client sources via Terminal (git must be installed!):
+##### 1. Get wirebot sources via Terminal:
 
 	git clone https://github.com/ProfDrLuigi/wirebot
 
-Then move to the `wire` directory:
+Then move to the `wirebot` directory:
 
 	cd wirebot/
 
@@ -43,28 +56,32 @@ To start configuration, use the following command:
 
 	./configure
 
-Wire Client is designed to be installed into `/usr/local` by default. To change this, run:
+wirebot is designed to be installed into `/usr/local/bin` by default. To change this, run:
 
 	./configure --prefix=/path	
 
 If you installed OpenSSL in a non-standard path, use the following command example as reference:
 
-	env CPPFLAGS=-I/usr/local/opt/openssl/include \
-	     LDFLAGS=-L/usr/local/opt/openssl/lib ./configure
+	env CPPFLAGS=-I/usr/local/opt/openssl/include LDFLAGS=-L/usr/local/opt/openssl/lib ./configure
 
 Use `./configure --help` in order to display more options.
 
 This will require write permissions to `/usr/local/bin`, or whatever directory you set as the prefix above. Depending of your OS setup, you may require to use `sudo`.
 
-##### 6. Running wirebot
+##### 4. Compile and install Binary
+	make
+	sudo make install
+	mkdir ~/.wirebot
+	cp wirebot.sh rss.sh config ~/.wirebot
+	chmod +x ~/.wirebot/wirebot.sh
 
-It´s designed to run it in a screen-Session.
+Don't forget to put your credentials into ~/.wirebot/config before you start the bot the first time.
 
-To start an installed wirebot, run:
+##### 5. Running wirebot (runs in a screen session)
 
-	screen -Sdm wirebot /usr/local/bin/wirebot
+To start the installed wirebot, run:
 
-It´s very important to run it this way because all Bot-Functions assumes that there is a screen session "wirebot" (p0) running.
+	/usr/local/bin/wirebot/./wirebotctl start
 
 You can inject any Text from any script to the session this way:
 	
@@ -72,15 +89,11 @@ You can inject any Text from any script to the session this way:
 
 To enter the running screen session simply type:
 	
-	screen -rS wirebot
+	/usr/local/bin/./wirebotctl screen
 	
-To leave the session (not closing!) type
+To leave the session (not closing!) type:
 
 	ctrl + a and than d
-
-If you are not familiar with "screen" visit this Site e.g.:
-
-	https://linuxize.com/post/how-to-use-linux-screen
 
 ##### 6. Configuration
 
@@ -108,15 +121,34 @@ If you got/send a msg you can cycle through the windows with:
 
 #### 7. Control wirebot:
 
-	Usage: wirebotctl [start | stop | restart | watch/nowatch | screen | status | config]
+	Usage:  wirebotctl [COMMAND]
 
-	start			start wirebot
-	stop			stop wirebot
-	restart			restart wirebot
-	screen			go into screen session (detach with ctrl+a and than d)
+	COMMAND:
+	start			Start wirebot
+	stop			Stop wirebot
+	restart			Restart wirebot
+	screen			Join screen session (To exit session press ctrl+a and than d)
 	watch/nowatch		Switch filewatching on/off
-	status			show the status
-	config			show the configuration
+	status			Show the status
+	config			Show the configuration
+	
+	join_on			Activate greeting if user joined server
+	join_off		Deactivate greeting if user joined server
+	
+	leave_on		Activate greeting if user leaved server
+	leave_off		Deactivate greeting if user leaved server
+
+	wordfilter_on		Activate wordfilter
+	wordfilter_off		Deactivate wordfilfter
+	
+	common_reply_on		Activate talkativeness
+	common_reply_off	Deactivate talkativeness	
+	
+	rssfeed_on		Activate RSS Newsfeed
+	rssfeed_off		Deactivate RSS Newsfeed
+
+By Prof. Dr. Luigi 
+Original by Rafaël Warnault <dev@read-write.fr>
 
 If you want to extent the wirebot with functions you can edit wirebot.sh in your .wirebot Directory.
 
