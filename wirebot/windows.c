@@ -120,7 +120,7 @@ void wr_windows_set_timestamp_format(wi_string_t *timestamp_format)
 	wi_release(wr_timestamp_format);
 	wr_timestamp_format = wi_retain(timestamp_format);
 
-	//wr_printf_prefix(WI_STR("Using timestamp format %@"), wr_timestamp_format);
+	// wr_printf_prefix(WI_STR("Using timestamp format %@"), wr_timestamp_format);
 
 	pid_t pid = getpid();
 
@@ -411,42 +411,54 @@ void wr_wprintf(wr_window_t *window, wi_string_t *fmt, ...)
 
 	string = wi_string_init_with_format_and_arguments(wi_string_alloc(), fmt, ap);
 	va_end(ap);
-	wr_wprint(window, string);
 
-	// luigi
+	// Checks if input is an image and it will be not printed in wire(bot) to not mess
+	// up the chat window
+	char *sent = (wi_string_cstring(string));
+	char *word = "data:image";
 
-	char *filename = "/.wirebot/wirebot.cmd";
-	char *home_dir = getenv("HOME");
-	char *filepath = malloc(strlen(home_dir) + strlen(filename) + 1);
-	sprintf(filepath, "%s%s", home_dir, filename);
+	char *pch = strstr(sent, word);
 
-	FILE *fp;
-	fp = fopen(filepath, "w");
-	if (fp == NULL)
+	if (!pch)
 	{
+
+		wr_wprint(window, string);
+
+		// luigi
+
+		char *filename = "/.wirebot/wirebot.cmd";
+		char *home_dir = getenv("HOME");
+		char *filepath = malloc(strlen(home_dir) + strlen(filename) + 1);
+		sprintf(filepath, "%s%s", home_dir, filename);
+
+		FILE *fp;
+		fp = fopen(filepath, "w");
+		if (fp == NULL)
+		{
+		}
+		else
+		{
+			fputs(wi_string_cstring(string), fp);
+			fclose(fp);
+		}
+
+		char *filename2 = "/.wirebot/./wirebot.sh &";
+		char *home_dir2 = getenv("HOME");
+		char *filepath2 = malloc(strlen(home_dir) + strlen(filename2) + 1);
+		sprintf(filepath2, "%s%s", home_dir2, filename2);
+
+		// system(filepath2);
+
+		int systemRet = system(filepath2);
+		if (systemRet == -1)
+		{
+			// The system method failed
+		}
+
+		free(filepath);
+		free(filepath2);
+		wi_release(string);
 	}
-	else
-	{
-		fputs(wi_string_cstring(string), fp);
-		fclose(fp);
-	}
-
-	char *filename2 = "/.wirebot/./wirebot.sh &";
-	char *home_dir2 = getenv("HOME");
-	char *filepath2 = malloc(strlen(home_dir) + strlen(filename2) + 1);
-	sprintf(filepath2, "%s%s", home_dir2, filename2);
-
-	// system(filepath2);
-
-	int systemRet = system(filepath2);
-	if (systemRet == -1)
-	{
-		// The system method failed
-	}
-
-	free(filepath);
-	free(filepath2);
-	wi_release(string);
 }
 void wr_printf_prefix(wi_string_t *fmt, ...)
 {
@@ -542,6 +554,7 @@ void wr_wprint_say(wr_window_t *window, wi_string_t *name, wi_string_t *chat)
 {
 
 	// luigi
+
 	wr_wprintf(window, WI_STR("%@ -###- %@"), name, chat);
 }
 
@@ -598,14 +611,14 @@ void wr_wprint_msg(wr_window_t *window, wi_string_t *nick, wi_string_t *message)
 
 void wr_print_topic(void)
 {
-	//wr_printf_prefix(WI_STR("Topic: %#@"), wr_topic_topic(wr_current_window->topic));
+	// wr_printf_prefix(WI_STR("Topic: %#@"), wr_topic_topic(wr_current_window->topic));
 
-	//if (wr_topic_user_nick(wr_current_window->topic))
+	// if (wr_topic_user_nick(wr_current_window->topic))
 	//{
-		//wr_printf_prefix(WI_STR("Topic set by %@ - %@"),
+	// wr_printf_prefix(WI_STR("Topic set by %@ - %@"),
 	//					 wr_topic_user_nick(wr_current_window->topic),
 	//					 wi_date_string_with_format(wr_topic_time(wr_current_window->topic), WI_STR("%a %b %e %T %Y")));
-		// system("/usr/bin/rm /home/pi/.wire/output.txt");
+	// system("/usr/bin/rm /home/pi/.wire/output.txt");
 	//}
 }
 
@@ -616,9 +629,9 @@ void wr_print_users(wr_window_t *window)
 	wr_user_t *user;
 	wi_uinteger_t max_length = 0;
 
-	//if (window->chat == wr_public_chat)
+	// if (window->chat == wr_public_chat)
 	//	wr_printf_prefix(WI_STR("Users currently online:"));
-	//else
+	// else
 	//	wr_printf_prefix(WI_STR("Users in chat:"));
 
 	users = wr_chat_users(window->chat);
